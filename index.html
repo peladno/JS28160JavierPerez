@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id="formReceta">
+    <input type="text" placeholder="Nombre de receta" id="nombreReceta" name="nombreReceta">
+    <p class="alertaInput" id="alerta"></p>
+    <div>
+      <input type="text" placeholder="Cantidad" id="cantidad0" name="cantidad0">
+      <input type="text" placeholder="Medida" id="medida0" name="medida0">
+      <input type="text" placeholder="Ingrediente" id="ingrediente0" name="ingrediente0">
+      <input type="text" placeholder="Precio" id="precio0" name="precio0">
+      <input type="hidden" value="0" id="total_chq">
+      <button id="ingresar">+</button><button id="eliminar">-</button>
+    </div>
+    <div id="ingredientes"></div><br>
+    <textarea placeholder="Procedimiento" id="procedimiento" name="procedimiento" rows="10" cols="90"></textarea><br>
+    <button type="submit">Guardar</button>
+  </form><br>
+  <button id="mostrar">Mostrar</button>
+  <div>
+    <h2 id="tituloRecetaCompleta"></h2>
+    <p id="listaIngredientesFinal"></p>
+    <p id="procedimientoReceta"></p>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
