@@ -1,4 +1,21 @@
 let listaIngredientes = []; 
+let recetas = [];
+
+/*
+if(localStorage.getItem('ingredientesLocales')) {
+  listaIngredientes = JSON.parse(localStorage.getItem('ingredientesLocales'))
+} else {
+  localStorage.setItem('ingredientesLocales', JSON.stringify(listaIngredientes))
+}*/
+
+class Receta {
+  constructor(nombreReceta, procedimiento, ingredientes){
+  this.id = recetas.length;  
+  this.nombreReceta = nombreReceta;
+  this.procedimiento = procedimiento;
+  this.ingredientes = ingredientes;
+  }
+}
 
 class Ingrediente {
   constructor(nombre, cantidad, unidadDeMedida, precio) {
@@ -15,8 +32,6 @@ let formReceta = document.getElementById('formReceta');
 let guardar = document.getElementById('guardar');
 let mostrar = document.getElementById('mostrar');
 
-
-localStorage.setItem('ingredientesLocales', JSON.stringify(listaIngredientes))
 
 //click para agregar nuevos inputs
 ingresar.addEventListener('click', (e) => {
@@ -68,11 +83,18 @@ formReceta.addEventListener('submit', (e) => {
 
     const ingredienteReceta = new Ingrediente (ingrediente, cantidad, medida, precio);
     listaIngredientes.push(ingredienteReceta);
-    localStorage.setItem('ingredientesLocales', JSON.stringify(listaIngredientes));
+    //localStorage.setItem('ingredientesLocales', JSON.stringify(listaIngredientes));
   }
+  let nombreReceta = document.getElementById('nombreReceta').value
+  let procedimiento = document.getElementById('procedimiento').value
   
+  let copiaListaingredientes = [...listaIngredientes] 
+
+  const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
+  recetas.push(receta)
 })
 
+/*
 //click que se usa para mostrar la receta hecha
 mostrar.addEventListener('click', () => { 
 
@@ -110,3 +132,6 @@ mostrar.addEventListener('click', () => {
     formReceta.reset()
   }
 })
+*/
+
+console.log(recetas)
