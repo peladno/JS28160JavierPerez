@@ -1,13 +1,3 @@
-let listaIngredientes = []; 
-let recetas = [];
-
-/*
-if(localStorage.getItem('ingredientesLocales')) {
-  listaIngredientes = JSON.parse(localStorage.getItem('ingredientesLocales'))
-} else {
-  localStorage.setItem('ingredientesLocales', JSON.stringify(listaIngredientes))
-}*/
-
 class Receta {
   constructor(nombreReceta, procedimiento, ingredientes){
   this.id = recetas.length;  
@@ -26,6 +16,15 @@ class Ingrediente {
     this.precioTotal = this.cantidad * this.precio; 
   }
 };
+
+let listaIngredientes = []; 
+let recetas = [];
+
+if(localStorage.getItem('ingredientesLocales')) {
+  recetas = JSON.parse(localStorage.getItem('ingredientesLocales'))
+} else {
+  localStorage.setItem('ingredientesLocales', JSON.stringify(recetas))
+}
 
 let ingredientes = document.getElementById('ingredientes');
 let formReceta = document.getElementById('formReceta');
@@ -83,15 +82,24 @@ formReceta.addEventListener('submit', (e) => {
 
     const ingredienteReceta = new Ingrediente (ingrediente, cantidad, medida, precio);
     listaIngredientes.push(ingredienteReceta);
-    //localStorage.setItem('ingredientesLocales', JSON.stringify(listaIngredientes));
   }
   let nombreReceta = document.getElementById('nombreReceta').value
   let procedimiento = document.getElementById('procedimiento').value
   
   let copiaListaingredientes = [...listaIngredientes] 
 
-  const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
-  recetas.push(receta)
+  if (document.getElementById('nombreReceta').value === "") {
+    alerta.innerHTML += `*Por favor ingrese nombre de receta`
+    document.getElementById('alerta').style.color = "red";
+  } else {
+    const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
+    recetas.push(receta)
+    localStorage.setItem('ingredientesLocales', JSON.stringify(recetas));
+  }
+})
+
+mostrar.addEventListener('click', () => {
+  
 })
 
 /*
@@ -133,5 +141,3 @@ mostrar.addEventListener('click', () => {
   }
 })
 */
-
-console.log(recetas)
