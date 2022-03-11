@@ -1,12 +1,4 @@
-class Receta {
-  constructor(nombreReceta, procedimiento, ingredientes){
-  this.id = recetas.length;  
-  this.nombreReceta = nombreReceta;
-  this.procedimiento = procedimiento;
-  this.ingredientes = ingredientes;
-  }
-}
-
+//clase para la creacion de array de ingredientes
 class Ingrediente {
   constructor(nombre, cantidad, unidadDeMedida, precio) {
     this.nombre = nombre;
@@ -17,13 +9,25 @@ class Ingrediente {
   }
 };
 
+//clase para laa creacion de array de receta, que incluye array de ingredientes
+class Receta {
+  constructor(nombreReceta, procedimiento, ingredientes){
+  this.id = recetas.length;  
+  this.nombreReceta = nombreReceta;
+  this.procedimiento = procedimiento;
+  this.ingredientes = ingredientes;
+  }
+}
+
+//arrays usados
 let listaIngredientes = []; 
 let recetas = [];
 
-if(localStorage.getItem('ingredientesLocales')) {
-  recetas = JSON.parse(localStorage.getItem('ingredientesLocales'))
+//if para que queden los array en localstorage, si no se haace al hacer refresh se borran
+if(localStorage.getItem('recetasLocales')) {
+  recetas = JSON.parse(localStorage.getItem('recetasLocales'))
 } else {
-  localStorage.setItem('ingredientesLocales', JSON.stringify(recetas))
+  localStorage.setItem('recetasLocales', JSON.stringify(recetas))
 }
 
 let ingredientes = document.getElementById('ingredientes');
@@ -36,8 +40,10 @@ let mostrar = document.getElementById('mostrar');
 ingresar.addEventListener('click', (e) => {
   e.preventDefault()
 
+  //se setea un vaalor de un click
   let clicks = parseInt(document.getElementById('total_chq').value)+1;
 
+  //div creados con los inputs correspondientes
   let inputsNuevos = document.createElement("div");
     inputsNuevos.innerHTML = `
       <input type="text" placeholder="Cantidad" id="cantidad${clicks}" name="cantidad${clicks}">
@@ -46,6 +52,8 @@ ingresar.addEventListener('click', (e) => {
       <input type="text" placeholder="Precio" id="precio${clicks}" name="precio${clicks}">
       `
     ingredientes.append(inputsNuevos);
+
+    //se iguala con let clicks para que un nuevo click se añada +1
     document.getElementById('total_chq').value = clicks;
 
 })
@@ -66,7 +74,7 @@ eliminar.addEventListener('click', (e) => {
   
 })
 
-//submit para pushear los ingredientes al array listaIngredientes
+//submit para pushear los ingredientes al array listaIngredientes y racetas al array recetas
 formReceta.addEventListener('submit', (e) => { 
   e.preventDefault()
 
@@ -94,50 +102,38 @@ formReceta.addEventListener('submit', (e) => {
   } else {
     const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
     recetas.push(receta)
-    localStorage.setItem('ingredientesLocales', JSON.stringify(recetas));
+    localStorage.setItem('recetasLocales', JSON.stringify(recetas));
   }
+  formReceta.reset()
 })
 
+//click para mostrar la ultima receta ingresada
 mostrar.addEventListener('click', () => {
+
+  let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'))
+  let ultimaReceta = recetas[recetasLocales.length-1];
   
+  let ingredientesUltimaReceta = ultimaReceta.ingredientes;
+  let nombreUltimaReceta = ultimaReceta.nombreReceta;
+  let procedimientoUltimaReceta = ultimaReceta.procedimiento;
+  
+  //funcion para sumar costos de ingredientes usados
+  let valorTotal = ingredientesUltimaReceta.reduce((valorAcc, item) => { 
+    return valorAcc + item.precioTotal;
+  }, 0); 
+
+
+  tituloRecetaCompleta.innerHTML += `${nombreUltimaReceta}`
+  listaIngredientesFinal.innerHTML += `<h3>Ingredientes:</h3>`
+  procedimientoReceta.innerHTML += `<h3>Procedimiento:</h3>
+  ${procedimientoUltimaReceta}<br>
+  <br>
+  El costo total de la receta es de $${valorTotal}
+  `
+  //Recorre ingredientes parseados y los deja como lista
+  ingredientesUltimaReceta.forEach(ingrediente => { 
+    listaIngredientesFinal.innerHTML += `
+      <li>${ingrediente.cantidad} ${ingrediente.unidadDeMedida} de ${ingrediente.nombre}</li>`
+  })
+
 })
-
-/*
-//click que se usa para mostrar la receta hecha
-mostrar.addEventListener('click', () => { 
-
-  //if...else para por lo menos agregar nombre en receta
-  if (document.getElementById('nombreReceta').value === "") {
-    alerta.innerHTML += `*Por favor ingrese nombre de receta`
-    document.getElementById('alerta').style.color = "red";
-  } else {
-    
-    let ingredientesGuardados = JSON.parse(localStorage.getItem('ingredientesLocales'))
-    let nombreReceta = document.getElementById('nombreReceta').value
-    let procedimiento = document.getElementById('procedimiento').value
-    
-    //copia del array de ingredientes
-    let copiaListaingredientes = [...listaIngredientes] 
-
-    //funcion para sumar costos de ingredientes usados
-    let valorTotal = copiaListaingredientes.reduce((valorAcc, item) => { 
-      return valorAcc + item.precioTotal;
-    }, 0); 
-
-    tituloRecetaCompleta.innerHTML += `${nombreReceta}`
-    listaIngredientesFinal.innerHTML += `<h3>Ingredientes:</h3>`
-    procedimientoReceta.innerHTML += `<h3>Procedimiento:</h3>
-    ${procedimiento}<br>
-    <br>
-    El costo total de la receta es de $${valorTotal}
-    `
-    //Recorre ingredientes parseados y los deja como lista
-    ingredientesGuardados.forEach(ingrediente => { 
-      listaIngredientesFinal.innerHTML += `
-        <li>${ingrediente.cantidad} ${ingrediente.unidadDeMedida} de ${ingrediente.nombre}</li>`
-    })
-    //formateo de receta despues de hacer click
-    formReceta.reset()
-  }
-})
-*/
