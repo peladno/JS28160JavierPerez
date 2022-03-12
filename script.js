@@ -9,7 +9,7 @@ class Ingrediente {
   }
 };
 
-//clase para laa creacion de array de receta, que incluye array de ingredientes
+//clase para la creacion de array de receta, que incluye array de ingredientes
 class Receta {
   constructor(nombreReceta, procedimiento, ingredientes){
   this.id = recetas.length;  
@@ -97,14 +97,37 @@ formReceta.addEventListener('submit', (e) => {
   let copiaListaingredientes = [...listaIngredientes] 
 
   if (document.getElementById('nombreReceta').value === "") {
-    alerta.innerHTML += `*Por favor ingrese nombre de receta`
+    //Se utilizó libreria "Sweet alert" para mostrar una alerta de error
+    Swal.fire(
+      'Error',
+      'Por favor ingrese nombre de receta',
+      'error'
+    )
     document.getElementById('alerta').style.color = "red";
   } else {
-    const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
-    recetas.push(receta)
-    localStorage.setItem('recetasLocales', JSON.stringify(recetas));
+    //Se utilizó libreria "Sweet alert" para mostrar una alerta de guardado
+    Swal.fire({
+      title: '¿Desea guardar receta?',
+      text: "No podrás revertir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Guardar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Guardado',
+          'Su receta fue guardada!.',
+          'success'
+        )
+        const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
+        recetas.push(receta)
+        localStorage.setItem('recetasLocales', JSON.stringify(recetas));
+      }
+    })
   }
-  formReceta.reset()
+  //formReceta.reset()
 })
 
 //click para mostrar la ultima receta ingresada
