@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
   <title>Generador de recetas</title>
 </head>
 <body>
@@ -16,18 +17,20 @@
       <input type="text" placeholder="Ingrediente" id="ingrediente0" name="ingrediente0">
       <input type="text" placeholder="Precio" id="precio0" name="precio0">
       <input type="hidden" value="0" id="total_chq">
-      <button id="ingresar">+</button><button id="eliminar">-</button>
+      <button id="ingresar" class="btn btn-primary">+</button><button id="eliminar" class="btn btn-primary">-</button>
     </div>
     <div id="ingredientes"></div><br>
     <textarea placeholder="Procedimiento" id="procedimiento" name="procedimiento" rows="10" cols="90"></textarea><br>
-    <button type="submit" id="guardar">Guardar</button>
+    <textarea placeholder="Descripción" id="descripcion" name="descripcion" rows="2" cols="90"></textarea><br>
+    <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
   </form><br>
-  <button id="mostrar">Mostrar</button>
+  <button id="mostrar" class="btn btn-primary">Mostrar</button>
   <div>
     <h2 id="tituloRecetaCompleta"></h2>
     <p id="listaIngredientesFinal"></p>
     <p id="procedimientoReceta"></p>
   </div>
+  <div id="listaRecetasJSON" class="row"></div>
   <script src="script.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

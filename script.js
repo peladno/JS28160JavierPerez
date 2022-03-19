@@ -11,10 +11,11 @@ class Ingrediente {
 
 //clase para la creacion de array de receta, que incluye array de ingredientes
 class Receta {
-  constructor(nombreReceta, procedimiento, ingredientes){
+  constructor(nombreReceta, procedimiento, descripcion, ingredientes){
   this.id = recetas.length;  
   this.nombreReceta = nombreReceta;
   this.procedimiento = procedimiento;
+  this.descripcion = descripcion;
   this.ingredientes = ingredientes;
   }
 }
@@ -93,6 +94,7 @@ formReceta.addEventListener('submit', (e) => {
   }
   let nombreReceta = document.getElementById('nombreReceta').value
   let procedimiento = document.getElementById('procedimiento').value
+  let descripcion = document.getElementById('descripcion').value
   
   let copiaListaingredientes = [...listaIngredientes] 
 
@@ -121,7 +123,7 @@ formReceta.addEventListener('submit', (e) => {
           'Su receta fue guardada!.',
           'success'
         )
-        const receta = new Receta (nombreReceta, procedimiento, copiaListaingredientes);
+        const receta = new Receta (nombreReceta, procedimiento, descripcion, copiaListaingredientes);
         recetas.push(receta)
         localStorage.setItem('recetasLocales', JSON.stringify(recetas));
       }
@@ -160,3 +162,26 @@ mostrar.addEventListener('click', () => {
   })
 
 })
+
+let listaJson = document.getElementById('listaRecetasJSON')
+
+async function obtenerRecetas() {
+  const response = await fetch('recetas.json')
+  return await response.json()
+}
+
+obtenerRecetas().then(recetasVarias => {
+  recetasVarias.forEach((receta => {
+    listaJson.innerHTML += `
+    <div class="card border-info mb-3" style="max-width: 20rem;">
+    <div class="card-header">${receta.nombre}</div>
+    <div class="card-body">
+    <h4 class="card-title">Ingredientes</h4>
+    <p class="card-text">${receta.descripcion}</p>
+    <button type="button" class="btn btn-primary">Mostrar</button>
+  </div>
+    `
+  }))
+})
+
+
