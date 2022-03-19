@@ -8,6 +8,7 @@
   <title>Generador de recetas</title>
 </head>
 <body>
+  <h1>Generador de Recetas</h1>
   <form id="formReceta">
     <input type="text" placeholder="Nombre de receta" id="nombreReceta" name="nombreReceta">
     <p class="alertaInput" id="alerta"></p>
@@ -23,13 +24,15 @@
     <textarea placeholder="Procedimiento" id="procedimiento" name="procedimiento" rows="10" cols="90"></textarea><br>
     <textarea placeholder="Descripción" id="descripcion" name="descripcion" rows="2" cols="90"></textarea><br>
     <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
+    <button type="reset" class="btn btn-primary">Reset</button>
   </form><br>
-  <button id="mostrar" class="btn btn-primary">Mostrar</button>
+  <button id="mostrar" class="btn btn-primary">Mostrar receta</button>
   <div>
     <h2 id="tituloRecetaCompleta"></h2>
     <p id="listaIngredientesFinal"></p>
     <p id="procedimientoReceta"></p>
   </div>
+  <h2>Recetas Demo</h2>
   <div id="listaRecetasJSON" class="row"></div>
   <script src="script.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

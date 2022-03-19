@@ -163,6 +163,7 @@ mostrar.addEventListener('click', () => {
 
 })
 
+//asincronismo 
 let listaJson = document.getElementById('listaRecetasJSON')
 
 async function obtenerRecetas() {
