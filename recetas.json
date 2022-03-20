@@ -4,28 +4,28 @@
     "nombre": "Creme Brulee",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi delectus laudantium enim! Ipsa, alias labore nemo veritatis magna.",
     "procedimiento": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
-    "ingredientes":[{"nombre":"leche","cantidad": "0.500","unidadDeMedida":"litro"},{"nombre":"huevos","cantidad":"5","unidadDeMedida":"unidad"},{"nombre":"azucar","cantidad": "0.100","unidadDeMedida":"kilogramo"},{"nombre":"vainilla","cantidad": "1","unidadDeMedida":"unidad"}]
+    "ingredientes":[{"nombre":"leche","cantidad": 0.500,"unidadDeMedida":"litro"},{"nombre":"huevos","cantidad":5 ,"unidadDeMedida":"unidad"},{"nombre":"azucar","cantidad": 0.100,"unidadDeMedida":"kilogramo"},{"nombre":"vainilla","cantidad": 1,"unidadDeMedida":"unidad"}]
   },
   {
     "id":"queque",
     "nombre": "Queque",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi delectus laudantium enim! Ipsa, alias labore nemo ver.",
     "procedimiento": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
-    "ingredientes":[{"nombre":"harina","cantidad": "0.300","unidadDeMedida":"kilogramo"},{"nombre":"huevos","cantidad": "5","unidadDeMedida":"unidad"},{"nombre":"azucar","cantidad": "0.600","unidadDeMedida":"kilogramo"},{"nombre":"leche","cantidad": "0.200","unidadDeMedida":"litro"}]
+    "ingredientes":[{"nombre":"harina","cantidad": 0.300,"unidadDeMedida":"kilogramo"},{"nombre":"huevos","cantidad": 5,"unidadDeMedida":"unidad"},{"nombre":"azucar","cantidad": 0.600,"unidadDeMedida":"kilogramo"},{"nombre":"leche","cantidad": 0.200,"unidadDeMedida":"litro"}]
   },
   {
     "id":"lecheconchocolate",
     "nombre": "Leche con chocolate",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi delectus laudantium enim! Ipsa, alias labore nemo veritatis magnam illum rep.",
     "procedimiento": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
-    "ingredientes":[{"nombre":"leche","cantidad": "1","unidadDeMedida":"litro"},{"nombre":"chocolate","cantidad": "0.300","unidadDeMedida":"kilogramo"},{"nombre":"azucar","cantidad": "0.500","unidadDeMedida":"kilogramo"}]
+    "ingredientes":[{"nombre":"leche","cantidad": 1,"unidadDeMedida":"litro"},{"nombre":"chocolate","cantidad": 0.300,"unidadDeMedida":"kilogramo"},{"nombre":"azucar","cantidad": 0.500,"unidadDeMedida":"kilogramo"}]
   },
   {
     "id":"jugodefruta",
     "nombre": "Jugo de fruta",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi",
     "procedimiento": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
-    "ingredientes":[{"nombre":"agua","cantidad": "2","unidadDeMedida":"litro"},{"nombre":"pulpa de fruta","cantidad": "0.600","unidadDeMedida":"kilogramo"},{"nombre":"azucar","cantidad": "0.250","unidadDeMedida":"kilogramo"}]
+    "ingredientes":[{"nombre":"agua","cantidad": 2,"unidadDeMedida":"litro"},{"nombre":"pulpa de fruta","cantidad": 0.600,"unidadDeMedida":"kilogramo"},{"nombre":"azucar","cantidad": 0.250,"unidadDeMedida":"kilogramo"}]
   }
 
 ]

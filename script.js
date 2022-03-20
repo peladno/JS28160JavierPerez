@@ -129,14 +129,16 @@ formReceta.addEventListener('submit', (e) => {
       }
     })
   }
-  //formReceta.reset()
 })
 
 //click para mostrar la ultima receta ingresada
+let listaReceta = document.getElementById('listaRecetas');
+
 mostrar.addEventListener('click', () => {
 
   let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'))
-  let ultimaReceta = recetas[recetasLocales.length-1];
+
+  let ultimaReceta = recetasLocales[recetasLocales.length-1];
   
   let ingredientesUltimaReceta = ultimaReceta.ingredientes;
   let nombreUltimaReceta = ultimaReceta.nombreReceta;
@@ -146,7 +148,6 @@ mostrar.addEventListener('click', () => {
   let valorTotal = ingredientesUltimaReceta.reduce((valorAcc, item) => { 
     return valorAcc + item.precioTotal;
   }, 0); 
-
 
   tituloRecetaCompleta.innerHTML += `${nombreUltimaReceta}`
   listaIngredientesFinal.innerHTML += `<h3>Ingredientes:</h3>`
@@ -160,7 +161,6 @@ mostrar.addEventListener('click', () => {
     listaIngredientesFinal.innerHTML += `
       <li>${ingrediente.cantidad} ${ingrediente.unidadDeMedida} de ${ingrediente.nombre}</li>`
   })
-
 })
 
 //asincronismo 
@@ -177,9 +177,9 @@ obtenerRecetas().then(recetasVarias => {
     <div class="card border-info mb-3" style="max-width: 20rem;">
     <div class="card-header">${receta.nombre}</div>
     <div class="card-body">
-    <h4 class="card-title">Ingredientes</h4>
+    <h4 class="card-title">Descripcion</h4>
     <p class="card-text">${receta.descripcion}</p>
-    <button type="button" class="btn btn-primary">Mostrar</button>
+    <button type="button" id="botonModal"class="btn btn-primary">Mostrar</button>
   </div>
     `
   }))
