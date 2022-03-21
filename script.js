@@ -84,17 +84,17 @@ formReceta.addEventListener('submit', (e) => {
   let cantidadHijos = padreInputs.children.length; 
 
   for (let i = 0; i <= cantidadHijos; i++) {
-    let ingrediente = document.getElementById('ingrediente'+[i]).value
-    let cantidad = document.getElementById('cantidad'+[i]).value
-    let medida = document.getElementById('medida'+[i]).value
-    let precio = document.getElementById('precio'+[i]).value
+    let ingrediente = DOMPurify.sanitize(document.getElementById('ingrediente'+[i]).value);
+    let cantidad = DOMPurify.sanitize(document.getElementById('cantidad'+[i]).value);
+    let medida = DOMPurify.sanitize(document.getElementById('medida'+[i]).value);
+    let precio = DOMPurify.sanitize(document.getElementById('precio'+[i]).value);
 
     const ingredienteReceta = new Ingrediente (ingrediente, cantidad, medida, precio);
     listaIngredientes.push(ingredienteReceta);
   }
-  let nombreReceta = document.getElementById('nombreReceta').value
-  let procedimiento = document.getElementById('procedimiento').value
-  let descripcion = document.getElementById('descripcion').value
+  let nombreReceta = DOMPurify.sanitize(document.getElementById('nombreReceta').value);
+  let procedimiento = DOMPurify.sanitize(document.getElementById('procedimiento').value);
+  let descripcion = DOMPurify.sanitize(document.getElementById('descripcion').value);
   
   let copiaListaingredientes = [...listaIngredientes] 
 
