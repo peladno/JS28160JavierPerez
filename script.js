@@ -131,51 +131,53 @@ formReceta.addEventListener('submit', (e) => {
   }
 })
 
-let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'))
+let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
 
-  // create div which contains the lists
-const div = document.createElement("div");
-div.className = "row";
+  //creacion div container
+const divContainer = document.createElement("div");
+divContainer.className = "row";
 
 for (let i = 0; i < recetasLocales.length; i++) {
+
+  //se crea div que contiene una receta
   const divReceta = document.createElement("div");
   divReceta.className = "card border-info mb-3";
   divReceta.style = "max-width: 20rem;";
 
-  const heading = document.createElement("div");
-  heading.textContent = `${recetasLocales[i].nombreReceta}`;
-  heading.className = "card-header";
+  const titulo = document.createElement("div");
+  titulo.textContent = `${recetasLocales[i].nombreReceta}`;
+  titulo.className = "card-header";
 
-  const subTitulo = document.createElement ("h3")
+  const subTitulo = document.createElement ("h3");
   subTitulo.textContent = `Ingredientes`
 
   const parrafo = document.createElement("p")
   parrafo.textContent = `${recetasLocales[i].procedimiento}`;
   
-    // create list
-  const list = document.createElement("ul");
+    //se crea lista
+  const lista = document.createElement("ul");
   for (let j = 0; j < recetasLocales[i].ingredientes.length; j++) {
     const element = recetasLocales[i].ingredientes[j].cantidad + " " + recetasLocales[i].ingredientes[j].unidadDeMedida + " " + recetasLocales[i].ingredientes[j].nombre + " ";
-      // create a new list item
-    const listItem = document.createElement("li");
-    listItem.textContent = element;
-      // add list item to list
-    list.appendChild(listItem);
+      //se crea nueva lista
+    const listaItem = document.createElement("li");
+    listaItem.textContent = element;
+      //se agrega ingrediente a la lista
+    lista.appendChild(listaItem);
   }
   
-    // adding it all together
-  div.appendChild(divReceta)  
-  divReceta.appendChild(heading);
-  divReceta.appendChild(subTitulo)
-  divReceta.appendChild(list);
+    //se agrega todo junto a los div en orden
+  divContainer.appendChild(divReceta);  
+  divReceta.appendChild(titulo);
+  divReceta.appendChild(subTitulo);
+  divReceta.appendChild(lista);
   divReceta.appendChild(parrafo)
 }
-  
+  //se carga contenido al DOM
 document.addEventListener("DOMContentLoaded", function (e) {
   const content = document.getElementById('listaRecetas');
-  content.appendChild(div);
+  content.appendChild(divContainer);
 });
-
+  
 
 //asincronismo 
 let listaJson = document.getElementById('listaRecetasJSON')
