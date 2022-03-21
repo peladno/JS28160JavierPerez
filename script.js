@@ -131,37 +131,51 @@ formReceta.addEventListener('submit', (e) => {
   }
 })
 
-//click para mostrar la ultima receta ingresada
-let listaReceta = document.getElementById('listaRecetas');
+let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'))
 
-mostrar.addEventListener('click', () => {
+  // create div which contains the lists
+const div = document.createElement("div");
+div.className = "row";
 
-  let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'))
+for (let i = 0; i < recetasLocales.length; i++) {
+  const divReceta = document.createElement("div");
+  divReceta.className = "card border-info mb-3";
+  divReceta.style = "max-width: 20rem;";
 
-  let ultimaReceta = recetasLocales[recetasLocales.length-1];
+  const heading = document.createElement("div");
+  heading.textContent = `${recetasLocales[i].nombreReceta}`;
+  heading.className = "card-header";
+
+  const subTitulo = document.createElement ("h3")
+  subTitulo.textContent = `Ingredientes`
+
+  const parrafo = document.createElement("p")
+  parrafo.textContent = `${recetasLocales[i].procedimiento}`;
   
-  let ingredientesUltimaReceta = ultimaReceta.ingredientes;
-  let nombreUltimaReceta = ultimaReceta.nombreReceta;
-  let procedimientoUltimaReceta = ultimaReceta.procedimiento;
+    // create list
+  const list = document.createElement("ul");
+  for (let j = 0; j < recetasLocales[i].ingredientes.length; j++) {
+    const element = recetasLocales[i].ingredientes[j].cantidad + " " + recetasLocales[i].ingredientes[j].unidadDeMedida + " " + recetasLocales[i].ingredientes[j].nombre + " ";
+      // create a new list item
+    const listItem = document.createElement("li");
+    listItem.textContent = element;
+      // add list item to list
+    list.appendChild(listItem);
+  }
   
-  //funcion para sumar costos de ingredientes usados
-  let valorTotal = ingredientesUltimaReceta.reduce((valorAcc, item) => { 
-    return valorAcc + item.precioTotal;
-  }, 0); 
+    // adding it all together
+  div.appendChild(divReceta)  
+  divReceta.appendChild(heading);
+  divReceta.appendChild(subTitulo)
+  divReceta.appendChild(list);
+  divReceta.appendChild(parrafo)
+}
+  
+document.addEventListener("DOMContentLoaded", function (e) {
+  const content = document.getElementById('listaRecetas');
+  content.appendChild(div);
+});
 
-  tituloRecetaCompleta.innerHTML += `${nombreUltimaReceta}`
-  listaIngredientesFinal.innerHTML += `<h3>Ingredientes:</h3>`
-  procedimientoReceta.innerHTML += `<h3>Procedimiento:</h3>
-  ${procedimientoUltimaReceta}<br>
-  <br>
-  El costo total de la receta es de $${valorTotal}
-  `
-  //Recorre ingredientes parseados y los deja como lista
-  ingredientesUltimaReceta.forEach(ingrediente => { 
-    listaIngredientesFinal.innerHTML += `
-      <li>${ingrediente.cantidad} ${ingrediente.unidadDeMedida} de ${ingrediente.nombre}</li>`
-  })
-})
 
 //asincronismo 
 let listaJson = document.getElementById('listaRecetasJSON')
@@ -174,12 +188,13 @@ async function obtenerRecetas() {
 obtenerRecetas().then(recetasVarias => {
   recetasVarias.forEach((receta => {
     listaJson.innerHTML += `
-    <div class="card border-info mb-3" style="max-width: 20rem;">
+  <div class="card border-info mb-3" style="max-width: 20rem;">
     <div class="card-header">${receta.nombre}</div>
     <div class="card-body">
-    <h4 class="card-title">Descripcion</h4>
-    <p class="card-text">${receta.descripcion}</p>
-    <button type="button" id="botonModal"class="btn btn-primary">Mostrar</button>
+      <h4 class="card-title">Descripcion</h4>
+      <p class="card-text">${receta.descripcion}</p>
+      <button type="button" id="botonModal"class="btn btn-primary">Mostrar</button>
+    </div<
   </div>
     `
   }))
