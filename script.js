@@ -126,18 +126,21 @@ formReceta.addEventListener('submit', (e) => {
         const receta = new Receta (nombreReceta, procedimiento, descripcion, copiaListaingredientes);
         recetas.push(receta)
         localStorage.setItem('recetasLocales', JSON.stringify(recetas));
+        getContainDiv();
       }
     })
   }
 })
 
-let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
+function getContainDiv () {
+
+  let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
 
   //creacion div container
-const divContainer = document.createElement("div");
-divContainer.className = "row";
+  const divContainer = document.createElement("div");
+  divContainer.className = "row";
 
-for (let i = 0; i < recetasLocales.length; i++) {
+  for (let i = 0; i < recetasLocales.length; i++) {
 
   //se crea div que contiene una receta
   const divReceta = document.createElement("div");
@@ -153,7 +156,7 @@ for (let i = 0; i < recetasLocales.length; i++) {
 
   const parrafo = document.createElement("p")
   parrafo.textContent = `${recetasLocales[i].procedimiento}`;
-  
+
     //se crea lista
   const lista = document.createElement("ul");
   for (let j = 0; j < recetasLocales[i].ingredientes.length; j++) {
@@ -164,18 +167,23 @@ for (let i = 0; i < recetasLocales.length; i++) {
       //se agrega ingrediente a la lista
     lista.appendChild(listaItem);
   }
-  
+
     //se agrega todo junto a los div en orden
   divContainer.appendChild(divReceta);  
   divReceta.appendChild(titulo);
   divReceta.appendChild(subTitulo);
   divReceta.appendChild(lista);
   divReceta.appendChild(parrafo)
-}
-  //se carga contenido al DOM
-document.addEventListener("DOMContentLoaded", function (e) {
+  }
+
   const content = document.getElementById('listaRecetas');
+  content.innerHTML = "";
   content.appendChild(divContainer);
+}
+
+//se carga contenido al DOM
+document.addEventListener("DOMContentLoaded", function (e) {
+    getContainDiv();
 });
   
 
