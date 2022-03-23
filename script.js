@@ -133,59 +133,56 @@ formReceta.addEventListener('submit', (e) => {
 })
 
 function getContainDiv() {
-  
-let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
-//creacion div container
-const divContainer = document.createElement("div");
-divContainer.className = "row";
-
-  for (let i = 0; i < recetasLocales.length; i++) {
-
-    //se crea div que contiene una receta
-    const divReceta = document.createElement("div");
-    divReceta.className = "card border-info mb-3";
-    divReceta.style = "max-width: 20rem;";
-  
-    const titulo = document.createElement("div");
-    titulo.textContent = `${recetasLocales[i].nombreReceta}`;
-    titulo.className = "card-header";
-  
-    const subTitulo = document.createElement ("h3");
-    subTitulo.textContent = `Ingredientes`
-  
-    const parrafo = document.createElement("p")
-    parrafo.textContent = `${recetasLocales[i].procedimiento}`;
     
-      //se crea lista
-    const lista = document.createElement("ul");
-    for (let j = 0; j < recetasLocales[i].ingredientes.length; j++) {
-      const element = recetasLocales[i].ingredientes[j].cantidad + " " + recetasLocales[i].ingredientes[j].unidadDeMedida + " " + recetasLocales[i].ingredientes[j].nombre + " ";
-        //se crea nueva lista
-      const listaItem = document.createElement("li");
-      listaItem.textContent = element;
-        //se agrega ingrediente a la lista
-      lista.appendChild(listaItem);
+  let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
+  //creacion div container
+  const divContainer = document.createElement("div");
+  divContainer.className = "row";
+
+    for (let i = 0; i < recetasLocales.length; i++) {
+
+      //se crea div que contiene una receta
+      const divReceta = document.createElement("div");
+      divReceta.className = "card border-info mb-3";
+      divReceta.style = "max-width: 20rem;";
+      divReceta.id = "recetaID" + [i]; 
+    
+      const titulo = document.createElement("div");
+      titulo.textContent = `${recetasLocales[i].nombreReceta}`;
+      titulo.className = "card-header";
+    
+      const subTitulo = document.createElement ("h3");
+      subTitulo.textContent = `Ingredientes`
+    
+      const parrafo = document.createElement("p")
+      parrafo.textContent = `${recetasLocales[i].procedimiento}`;
+      
+        //se crea lista
+      const lista = document.createElement("ul");
+      for (let j = 0; j < recetasLocales[i].ingredientes.length; j++) {
+        const element = recetasLocales[i].ingredientes[j].cantidad + " " + recetasLocales[i].ingredientes[j].unidadDeMedida + " " + recetasLocales[i].ingredientes[j].nombre;
+          //se crea nueva lista
+        const listaItem = document.createElement("li");
+        listaItem.textContent = element;
+          //se agrega ingrediente a la lista
+        lista.appendChild(listaItem);
+      }
+      
+        //se agrega todo junto a los div en orden
+      divContainer.appendChild(divReceta);    
+      divReceta.appendChild(titulo);
+      divReceta.appendChild(subTitulo);
+      divReceta.appendChild(lista);
+      divReceta.appendChild(parrafo)
     }
     
-      //se agrega todo junto a los div en orden
-    divContainer.appendChild(divReceta);    
-    divReceta.appendChild(titulo);
-    divReceta.appendChild(subTitulo);
-    divReceta.appendChild(lista);
-    divReceta.appendChild(parrafo)
-  }
-  
-    const content = document.getElementById('listaRecetas');
-    content.innerHTML = "";
-    content.appendChild(divContainer);
+      const content = document.getElementById('listaRecetas');
+      content.innerHTML = "";
+      content.appendChild(divContainer);
 }
     document.addEventListener("DOMContentLoaded", function(e){
       getContainDiv();
     })
-
-
-
-  
 
 //asincronismo 
 let listaJson = document.getElementById('listaRecetasJSON')
@@ -196,18 +193,20 @@ async function obtenerRecetas() {
 }
 
 obtenerRecetas().then(recetasVarias => {
-  recetasVarias.forEach((receta => {
+  
+  for (let i = 0; i < recetasVarias.length; i++) {
+  
     listaJson.innerHTML += `
-  <div class="card border-info mb-3" style="max-width: 20rem;">
-    <div class="card-header">${receta.nombre}</div>
+    <div class="card border-info mb-3" style="max-width: 20rem;">
+    <div class="card-header">${recetasVarias[i].nombre}</div>
     <div class="card-body">
-      <h4 class="card-title">Descripcion</h4>
-      <p class="card-text">${receta.descripcion}</p>
+      <h4 class="card-title">Descripción</h4>
+      <p class="card-text">${recetasVarias[i].descripcion}</p>
       <button type="button" id="botonModal"class="btn btn-primary">Mostrar</button>
-    </div<
+    </div>
   </div>
-    `
-  }))
+  `
+  }
 })
 
 
