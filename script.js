@@ -127,13 +127,15 @@ formReceta.addEventListener('submit', (e) => {
         recetas.push(receta)
         localStorage.setItem('recetasLocales', JSON.stringify(recetas));
         getContainDiv();
+        modales();
       }
     })
   }
 })
 
 function getContainDiv() {
-    
+
+  let modalRecetas = document.getElementById('modalRecetas')
   let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
   //creacion div container
   const divContainer = document.createElement("div");
@@ -152,33 +154,62 @@ function getContainDiv() {
       titulo.className = "card-header";
     
       const subTitulo = document.createElement ("h3");
-      subTitulo.textContent = `Ingredientes`
+      subTitulo.textContent = `Descripción`
     
-      const parrafo = document.createElement("p")
-      parrafo.textContent = `${recetasLocales[i].procedimiento}`;
-      
-        //se crea lista
-      const lista = document.createElement("ul");
-      for (let j = 0; j < recetasLocales[i].ingredientes.length; j++) {
-        const element = recetasLocales[i].ingredientes[j].cantidad + " " + recetasLocales[i].ingredientes[j].unidadDeMedida + " " + recetasLocales[i].ingredientes[j].nombre;
-          //se crea nueva lista
-        const listaItem = document.createElement("li");
-        listaItem.textContent = element;
-          //se agrega ingrediente a la lista
-        lista.appendChild(listaItem);
-      }
-      
+      const parrafo = document.createElement("p");
+      parrafo.textContent = `${recetasLocales[i].descripcion}`;
+
+      const botonModal = document.createElement("button");
+      botonModal.textContent = "Mostrar";
+      botonModal.type = "button";
+      botonModal.className ="btn btn-primary";
+      botonModal.setAttribute ("data-bs-toggle", "modal");
+      botonModal.setAttribute ("data-bs-target", "#recetaModalID" + [i]);
+
         //se agrega todo junto a los div en orden
       divContainer.appendChild(divReceta);    
       divReceta.appendChild(titulo);
       divReceta.appendChild(subTitulo);
-      divReceta.appendChild(lista);
-      divReceta.appendChild(parrafo)
+      divReceta.appendChild(parrafo);
+      divReceta.appendChild(botonModal);
+
+      let str = `
+        <div class="modal fade" id="recetaModalID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="recetaModalID${[i]}">${recetasLocales[i].nombreReceta}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                  Ingredientes:
+                  <ul>
+                  `
+            
+      for (let n = 0; n < recetasLocales[i].ingredientes.length; n++ ) {
+        str += `
+        <li>${recetasLocales[i].ingredientes[n].nombre}</li>
+        `
+      }
+      str += `
+        </ul>
+        <p>${recetasLocales[i].procedimiento}</p>
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>`
+    
+      modalRecetas.innerHTML += str;
     }
     
       const content = document.getElementById('listaRecetas');
       content.innerHTML = "";
       content.appendChild(divContainer);
+
 }
     document.addEventListener("DOMContentLoaded", function(e){
       getContainDiv();
@@ -208,5 +239,3 @@ obtenerRecetas().then(recetasVarias => {
   `
   }
 })
-
-
