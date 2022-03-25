@@ -127,7 +127,6 @@ formReceta.addEventListener('submit', (e) => {
         recetas.push(receta)
         localStorage.setItem('recetasLocales', JSON.stringify(recetas));
         getContainDiv();
-        modales();
       }
     })
   }
@@ -140,6 +139,7 @@ function getContainDiv() {
   //creacion div container
   const divContainer = document.createElement("div");
   divContainer.className = "row";
+  divContainer.id = "divContainer";
 
     for (let i = 0; i < recetasLocales.length; i++) {
 
@@ -166,13 +166,22 @@ function getContainDiv() {
       botonModal.setAttribute ("data-bs-toggle", "modal");
       botonModal.setAttribute ("data-bs-target", "#recetaModalID" + [i]);
 
+      const botonEliminar = document.createElement("button");
+      botonEliminar.className = "btn btn-lg btn-outline-danger";
+      botonEliminar.ariaLabel = "Borrar" + `${recetasLocales[i].nombreReceta}`;
+      botonEliminar.value = `${recetasLocales[i].id}`;
+      botonEliminar.textContent = `Eliminar Receta`;
+     
+
         //se agrega todo junto a los div en orden
       divContainer.appendChild(divReceta);    
       divReceta.appendChild(titulo);
       divReceta.appendChild(subTitulo);
       divReceta.appendChild(parrafo);
       divReceta.appendChild(botonModal);
-
+      divReceta.appendChild(botonEliminar);
+      
+      //crear modal
       let str = `
         <div class="modal fade" id="recetaModalID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -211,9 +220,9 @@ function getContainDiv() {
       content.appendChild(divContainer);
 
 }
-    document.addEventListener("DOMContentLoaded", function(e){
-      getContainDiv();
-    })
+document.addEventListener("DOMContentLoaded", function(e){
+  getContainDiv();
+})
 
 //asincronismo 
 let listaJson = document.getElementById('listaRecetasJSON')
@@ -239,3 +248,20 @@ obtenerRecetas().then(recetasVarias => {
   `
   }
 })
+
+
+//borrar receta
+function eliminarReceta(id){
+  recetas = recetas.filter(item => item.id !== id);
+}
+
+const listaRecetas = document.getElementById('listaRecetas')
+
+listaRecetas.addEventListener('click', (e) => {
+
+  if(e.target.matches('btn btn-lg btn-outline-danger')) {
+    eliminarReceta(Number(e.target.value))
+  };
+  
+})
+
