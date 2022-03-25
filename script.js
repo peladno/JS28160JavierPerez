@@ -214,11 +214,15 @@ function getContainDiv() {
       </div>`
     
       modalRecetas.innerHTML += str;
+
     }
     
       const content = document.getElementById('listaRecetas');
       content.innerHTML = "";
       content.appendChild(divContainer);
+
+      
+  
 
 }
 document.addEventListener("DOMContentLoaded", function(e){
@@ -285,20 +289,19 @@ obtenerRecetas().then(recetasVarias => {
 
 
 //borrar receta
-
-
 const listaRecetas = document.getElementById('listaRecetas');
 
 function eliminarReceta(id){
   recetas = recetas.filter(item => item.id !== id);
-};
 
+};
 
 listaRecetas.addEventListener('click', (e) => {
 
-  if(e.target.matches('btn btn-lg btn-outline-danger')) {
+  if (e.target.matches('.btn.btn-lg.btn-outline-danger')) {
     eliminarReceta(Number(e.target.value))
   };
   
 })
 
+console.log (recetas)
