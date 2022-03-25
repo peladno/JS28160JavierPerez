@@ -56,7 +56,6 @@ ingresar.addEventListener('click', (e) => {
 
     //se iguala con let clicks para que un nuevo click se añada +1
     document.getElementById('total_chq').value = clicks;
-
 })
 
 //click para remover inputs
@@ -65,14 +64,15 @@ eliminar.addEventListener('click', (e) => {
 
   let clicks2 = document.getElementById('total_chq').value;
 
-  //operario avanzado para remover inputs
-  clicks2 > 0 &&
+  if (clicks2 >= 1){
+    //operario avanzado para remover inputs
+    clicks2 > 0 &&
     document.getElementById('cantidad'+clicks2).remove();
     document.getElementById('medida'+clicks2).remove();
     document.getElementById('ingrediente'+clicks2).remove();
     document.getElementById('precio'+clicks2).remove();
     document.getElementById('total_chq').value = clicks2 -1;
-  
+  }
 })
 
 //submit para pushear los ingredientes al array listaIngredientes y racetas al array recetas
@@ -288,12 +288,18 @@ obtenerRecetas().then(recetasVarias => {
 })
 
 
-//borrar receta
+//barrar receta usando boton
 const listaRecetas = document.getElementById('listaRecetas');
 
 function eliminarReceta(id){
   recetas = recetas.filter(item => item.id !== id);
 
+  //se elimina receta del DOM
+  const receta = document.getElementById('recetaID' + id);
+  receta.parentNode.removeChild(receta);
+
+  //se actualiza localstorage
+  localStorage.setItem('recetasLocales', JSON.stringify(recetas));
 };
 
 listaRecetas.addEventListener('click', (e) => {
@@ -301,7 +307,6 @@ listaRecetas.addEventListener('click', (e) => {
   if (e.target.matches('.btn.btn-lg.btn-outline-danger')) {
     eliminarReceta(Number(e.target.value))
   };
-  
-})
 
-console.log (recetas)
+});
+
