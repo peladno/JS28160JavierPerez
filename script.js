@@ -191,7 +191,7 @@ function getContainDiv() {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                  Ingredientes:
+                  <h6>Ingredientes:</h6>
                   <ul>
                   `
             
@@ -202,6 +202,7 @@ function getContainDiv() {
       }
       str += `
         </ul>
+        <h6>Procedimiento:</h6>
         <p>${recetasLocales[i].procedimiento}</p>
         </div>
             <div class="modal-footer">
@@ -226,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 //asincronismo 
 let listaJson = document.getElementById('listaRecetasJSON')
+let listaJsonModal = document.getElementById('listaJsonModal')
 
 async function obtenerRecetas() {
   const response = await fetch('recetas.json')
@@ -242,20 +244,55 @@ obtenerRecetas().then(recetasVarias => {
     <div class="card-body">
       <h4 class="card-title">Descripción</h4>
       <p class="card-text">${recetasVarias[i].descripcion}</p>
-      <button type="button" id="botonModal"class="btn btn-primary">Mostrar</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recetaJsonModalID${[i]}">Mostrar</button>
     </div>
-  </div>
-  `
+    </div>
+    `
+    let str = `
+        <div class="modal fade" id="recetaJsonModalID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="recetaJsonModalID${[i]}">${recetasVarias[i].nombre}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                  <h6>Ingredientes:</h6>
+                  <ul>
+                  `
+            
+      for (let n = 0; n < recetasVarias[i].ingredientes.length; n++ ) {
+        str += `
+        <li>${recetasVarias[i].ingredientes[n].nombre}</li>
+        `
+      }
+      str += `
+        </ul>
+        <h6>Procedimiento:</h6>
+        <p>${recetasVarias[i].procedimiento}</p>
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>`
+    
+      listaJsonModal.innerHTML += str;
   }
 })
 
 
 //borrar receta
+
+
+const listaRecetas = document.getElementById('listaRecetas');
+
 function eliminarReceta(id){
   recetas = recetas.filter(item => item.id !== id);
-}
+};
 
-const listaRecetas = document.getElementById('listaRecetas')
 
 listaRecetas.addEventListener('click', (e) => {
 
