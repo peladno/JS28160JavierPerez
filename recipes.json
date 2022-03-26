@@ -1,0 +1,31 @@
+[
+  {
+    "id":"cremebrulee",
+    "name": "Creme Brulee",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi delectus laudantium enim! Ipsa, alias labore nemo veritatis magna.",
+    "method": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
+    "ingredients":[{"name":"leche","quantity": 0.500,"measure":"litro"},{"name":"huevos","quantity":5 ,"measure":"unidad"},{"name":"azucar","quantity": 0.100,"measure":"kilogramo"},{"name":"vainilla","quantity": 1,"measure":"unidad"}]
+  },
+  {
+    "id":"queque",
+    "name": "Queque",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi delectus laudantium enim! Ipsa, alias labore nemo ver.",
+    "method": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
+    "ingredients":[{"name":"harina","quantity": 0.300,"measure":"kilogramo"},{"name":"huevos","quantity": 5,"measure":"unidad"},{"name":"azucar","quantity": 0.600,"measure":"kilogramo"},{"name":"leche","quantity": 0.200,"measure":"litro"}]
+  },
+  {
+    "id":"lecheconchocolate",
+    "name": "Leche con chocolate",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi delectus laudantium enim! Ipsa, alias labore nemo veritatis magnam illum rep.",
+    "method": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
+    "ingredients":[{"name":"leche","quantity": 1,"measure":"litro"},{"name":"chocolate","quantity": 0.300,"measure":"kilogramo"},{"name":"azucar","quantity": 0.500,"measure":"kilogramo"}]
+  },
+  {
+    "id":"jugodefruta",
+    "name": "Jugo de fruta",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vel laboriosam necessitatibus nisi",
+    "method": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi libero, tenetur deleniti nostrum iusto laudantium nulla, aspernatur sapiente, mollitia porro laborum? Sapiente doloribus aliquam ab. Exercitationem adipisci reiciendis nulla distinctio sequi hic, quisquam ullam rerum.",
+    "ingredients":[{"name":"agua","quantity": 2,"measure":"litro"},{"name":"pulpa de fruta","quantity": 0.600,"measure":"kilogramo"},{"name":"azucar","quantity": 0.250,"measure":"kilogramo"}]
+  }
+
+]

@@ -9,33 +9,30 @@
 </head>
 <body>
   <h1>Generador de Recetas</h1>
-  <form id="formReceta">
-    <input type="text" placeholder="Nombre de receta" id="nombreReceta" name="nombreReceta">
+  <form id="formRecipe">
+    <input type="text" placeholder="Nombre de receta" id="recipeName" name="recipeName">
     <div>
-      <input type="text" placeholder="Cantidad" id="cantidad0" name="cantidad0">
-      <input type="text" placeholder="Medida" id="medida0" name="medida0">
-      <input type="text" placeholder="Ingrediente" id="ingrediente0" name="ingrediente0">
-      <input type="text" placeholder="Precio" id="precio0" name="precio0">
+      <input type="text" placeholder="Cantidad" id="quantity0" name="quantity0">
+      <input type="text" placeholder="Medida" id="measure0" name="measure0">
+      <input type="text" placeholder="Ingrediente" id="ingredient0" name="ingredient0">
+      <input type="text" placeholder="Precio" id="price0" name="price0">
       <input type="hidden" value="0" id="total_chq">
-      <button id="ingresar" class="btn btn-primary">+</button><button id="eliminar" class="btn btn-primary">-</button>
+      <button id="add" class="btn btn-primary">+</button><button id="remove" class="btn btn-primary">-</button>
     </div>
-    <div id="ingredientes"></div><br>
-    <textarea placeholder="Procedimiento" id="procedimiento" name="procedimiento" rows="10" cols="90"></textarea><br>
-    <textarea placeholder="Descripción" id="descripcion" name="descripcion" rows="2" cols="90"></textarea><br>
-    <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
-    <button type="reset" class="btn btn-primary">Reset</button>
+    <div id="ingredients"></div><br>
+    <textarea placeholder="Procedimiento" id="method" name="method" rows="10" cols="90"></textarea><br>
+    <textarea placeholder="Descripción" id="description" name="description" rows="2" cols="90"></textarea><br>
+    <button type="submit" id="save" class="btn btn-primary">Guardar</button>
   </form><br>
   <h2>Recetas Demo</h2>
-  <div id="listaRecetasJSON" class="row"></div>
-  <div id="listaJsonModal"></div>
+  <div id="jsonRecipeList" class="row"></div>
+  <div id="jsonModalList"></div>
   <h2>Tus Recetas</h2>
-  <div id="listaRecetas" class="row"></div>
-  <div id="modalRecetas"></div>
-  <div id="listaJsonModal"></div>
+  <div id="recipeList" class="row"></div>
+  <div id="modalRecipes"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="script.js"></script>
-  
 </body>
 </html>

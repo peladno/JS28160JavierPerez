@@ -1,65 +1,65 @@
 //clase para la creacion de array de ingredientes
-class Ingrediente {
-  constructor(nombre, cantidad, unidadDeMedida, precio) {
-    this.nombre = nombre;
-    this.cantidad = cantidad;
-    this.unidadDeMedida = unidadDeMedida; 
-    this.precio = precio;
-    this.precioTotal = this.cantidad * this.precio; 
+class Ingredient {
+  constructor(name, quantity, measure, price) {
+    this.nombre = name;
+    this.quantity = quantity;
+    this.measure = measure; 
+    this.price = price;
+    this.Totalprice = this.quantity * this.price; 
   }
 };
 
 //clase para la creacion de array de receta, que incluye array de ingredientes
-class Receta {
-  constructor(nombreReceta, procedimiento, descripcion, ingredientes){
-  this.id = recetas.length;  
-  this.nombreReceta = nombreReceta;
-  this.procedimiento = procedimiento;
-  this.descripcion = descripcion;
-  this.ingredientes = ingredientes;
+class Recipe {
+  constructor(recipeName, method, description, ingredients){
+  this.id = recipes.length;  
+  this.recipeName = recipeName;
+  this.method = method;
+  this.description = description;
+  this.ingredients = ingredients;
   }
 }
 
 //arrays usados
-let listaIngredientes = []; 
-let recetas = [];
+let ingredientsList = []; 
+let recipes = [];
 
 //if para que queden los array en localstorage, si no se haace al hacer refresh se borran
-if(localStorage.getItem('recetasLocales')) {
-  recetas = JSON.parse(localStorage.getItem('recetasLocales'))
+if(localStorage.getItem('localRecipes')) {
+  recipes = JSON.parse(localStorage.getItem('localRecipes'))
 } else {
-  localStorage.setItem('recetasLocales', JSON.stringify(recetas))
+  localStorage.setItem('localRecipes', JSON.stringify(recipes))
 }
 
-let ingredientes = document.getElementById('ingredientes');
-let formReceta = document.getElementById('formReceta');
-let guardar = document.getElementById('guardar');
-let mostrar = document.getElementById('mostrar');
+let ingredients = document.getElementById('ingredients');
+let recipeForm = document.getElementById('recipeForm');
+let save = document.getElementById('save');
+let show = document.getElementById('show');
 
 
 //click para agregar nuevos inputs
-ingresar.addEventListener('click', (e) => {
+add.addEventListener('click', (e) => {
   e.preventDefault()
 
   //se setea un vaalor de un click
   let clicks = parseInt(document.getElementById('total_chq').value)+1;
 
   //div creados con los inputs correspondientes
-  let inputsNuevos = document.createElement("div");
-    inputsNuevos.innerHTML = `
+  let newInputs = document.createElement("div");
+    newInputs.innerHTML = `
       <input type="text" placeholder="Cantidad" id="cantidad${clicks}" name="cantidad${clicks}">
       <input type="text" placeholder="Medida" id="medida${clicks}" name="medida${clicks}">
       <input type="text" placeholder="Ingrediente" id="ingrediente${clicks}" name="ingrediente${clicks}">
       <input type="text" placeholder="Precio" id="precio${clicks}" name="precio${clicks}">
       `
-    ingredientes.append(inputsNuevos);
+    ingredients.append(newInputs);
 
     //se iguala con let clicks para que un nuevo click se añada +1
     document.getElementById('total_chq').value = clicks;
 })
 
 //click para remover inputs
-eliminar.addEventListener('click', (e) => {
+remove.addEventListener('click', (e) => {
   e.preventDefault()
 
   let clicks2 = document.getElementById('total_chq').value;
@@ -67,38 +67,38 @@ eliminar.addEventListener('click', (e) => {
   if (clicks2 >= 1){
     //operario avanzado para remover inputs
     clicks2 > 0 &&
-    document.getElementById('cantidad'+clicks2).remove();
-    document.getElementById('medida'+clicks2).remove();
-    document.getElementById('ingrediente'+clicks2).remove();
-    document.getElementById('precio'+clicks2).remove();
+    document.getElementById('quantity'+clicks2).remove();
+    document.getElementById('measure'+clicks2).remove();
+    document.getElementById('ingredient'+clicks2).remove();
+    document.getElementById('price'+clicks2).remove();
     document.getElementById('total_chq').value = clicks2 -1;
   }
 })
 
 //submit para pushear los ingredientes al array listaIngredientes y racetas al array recetas
-formReceta.addEventListener('submit', (e) => { 
+formRecipe.addEventListener('submit', (e) => { 
   e.preventDefault()
 
-  let padreInputs = document.getElementById('ingredientes');
+  let parentInputs = document.getElementById('ingredients');
   //este length me da la cantidad de hijos que tiene el div, asi usarlo en el for que sigue
-  let cantidadHijos = padreInputs.children.length; 
+  let numberOfChildrens = parentInputs.children.length; 
 
-  for (let i = 0; i <= cantidadHijos; i++) {
-    let ingrediente = DOMPurify.sanitize(document.getElementById('ingrediente'+[i]).value);
-    let cantidad = DOMPurify.sanitize(document.getElementById('cantidad'+[i]).value);
-    let medida = DOMPurify.sanitize(document.getElementById('medida'+[i]).value);
-    let precio = DOMPurify.sanitize(document.getElementById('precio'+[i]).value);
+  for (let i = 0; i <= numberOfChildrens; i++) {
+    let ingredient = DOMPurify.sanitize(document.getElementById('ingredient'+[i]).value);
+    let quantity = DOMPurify.sanitize(document.getElementById('quantity'+[i]).value);
+    let measure = DOMPurify.sanitize(document.getElementById('measure'+[i]).value);
+    let price = DOMPurify.sanitize(document.getElementById('price'+[i]).value);
 
-    const ingredienteReceta = new Ingrediente (ingrediente, cantidad, medida, precio);
-    listaIngredientes.push(ingredienteReceta);
+    const recipeIngredient = new Ingredient (ingredient, quantity, measure, price);
+    ingredientsList.push(recipeIngredient);
   }
-  let nombreReceta = DOMPurify.sanitize(document.getElementById('nombreReceta').value);
-  let procedimiento = DOMPurify.sanitize(document.getElementById('procedimiento').value);
-  let descripcion = DOMPurify.sanitize(document.getElementById('descripcion').value);
+  let recipeName = DOMPurify.sanitize(document.getElementById('recipeName').value);
+  let method = DOMPurify.sanitize(document.getElementById('method').value);
+  let description = DOMPurify.sanitize(document.getElementById('description').value);
   
-  let copiaListaingredientes = [...listaIngredientes] 
+  let ingredientsListCopy = [...ingredientsList] 
 
-  if (document.getElementById('nombreReceta').value === "") {
+  if (document.getElementById('recipeName').value === "") {
     //Se utilizó libreria "Sweet alert" para mostrar una alerta de error
     Swal.fire(
       'Error',
@@ -123,10 +123,11 @@ formReceta.addEventListener('submit', (e) => {
           'Su receta fue guardada!.',
           'success'
         )
-        const receta = new Receta (nombreReceta, procedimiento, descripcion, copiaListaingredientes);
-        recetas.push(receta)
-        localStorage.setItem('recetasLocales', JSON.stringify(recetas));
+        const recipe = new Recipe (recipeName, method, description, ingredientsListCopy);
+        recipes.push(recipe)
+        localStorage.setItem('localRecipes', JSON.stringify(recipes));
         getContainDiv();
+        formRecipe.reset();
       }
     })
   }
@@ -134,60 +135,61 @@ formReceta.addEventListener('submit', (e) => {
 
 function getContainDiv() {
 
-  let modalRecetas = document.getElementById('modalRecetas')
-  let recetasLocales = JSON.parse(localStorage.getItem('recetasLocales'));
+  let modalRecipes = document.getElementById('modalRecipes')
+  let localRecipes = JSON.parse(localStorage.getItem('localRecipes'));
+
   //creacion div container
   const divContainer = document.createElement("div");
   divContainer.className = "row";
   divContainer.id = "divContainer";
 
-    for (let i = 0; i < recetasLocales.length; i++) {
+    for (let i = 0; i < localRecipes.length; i++) {
 
       //se crea div que contiene una receta
-      const divReceta = document.createElement("div");
-      divReceta.className = "card border-info mb-3";
-      divReceta.style = "max-width: 20rem;";
-      divReceta.id = "recetaID" + [i]; 
+      const divRecipe = document.createElement("div");
+      divRecipe.className = "card border-info mb-3";
+      divRecipe.style = "max-width: 20rem;";
+      divRecipe.id = "recipeID" + [i]; 
     
-      const titulo = document.createElement("div");
-      titulo.textContent = `${recetasLocales[i].nombreReceta}`;
-      titulo.className = "card-header";
+      const title = document.createElement("div");
+      title.textContent = `${localRecipes[i].recipeName}`;
+      title.className = "card-header";
     
-      const subTitulo = document.createElement ("h3");
-      subTitulo.textContent = `Descripción`
+      const subTitle = document.createElement ("h3");
+      subTitle.textContent = `Descripción`
     
-      const parrafo = document.createElement("p");
-      parrafo.textContent = `${recetasLocales[i].descripcion}`;
+      const paragraph = document.createElement("p");
+      paragraph.textContent = `${localRecipes[i].description}`;
 
-      const botonModal = document.createElement("button");
-      botonModal.textContent = "Mostrar";
-      botonModal.type = "button";
-      botonModal.className ="btn btn-primary";
-      botonModal.setAttribute ("data-bs-toggle", "modal");
-      botonModal.setAttribute ("data-bs-target", "#recetaModalID" + [i]);
+      const modalButton = document.createElement("button");
+      modalButton.textContent = "Show";
+      modalButton.type = "button";
+      modalButton.className ="btn btn-primary";
+      modalButton.setAttribute ("data-bs-toggle", "modal");
+      modalButton.setAttribute ("data-bs-target", "#modalRecipeID" + [i]);
 
-      const botonEliminar = document.createElement("button");
-      botonEliminar.className = "btn btn-lg btn-outline-danger";
-      botonEliminar.ariaLabel = "Borrar" + `${recetasLocales[i].nombreReceta}`;
-      botonEliminar.value = `${recetasLocales[i].id}`;
-      botonEliminar.textContent = `Eliminar Receta`;
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "btn btn-lg btn-outline-danger";
+      deleteButton.ariaLabel = "Borrar" + `${localRecipes[i].recipeName}`;
+      deleteButton.value = `${localRecipes[i].id}`;
+      deleteButton.textContent = `Eliminar Receta`;
      
 
         //se agrega todo junto a los div en orden
-      divContainer.appendChild(divReceta);    
-      divReceta.appendChild(titulo);
-      divReceta.appendChild(subTitulo);
-      divReceta.appendChild(parrafo);
-      divReceta.appendChild(botonModal);
-      divReceta.appendChild(botonEliminar);
+      divContainer.appendChild(divRecipe);    
+      divRecipe.appendChild(title);
+      divRecipe.appendChild(subTitle);
+      divRecipe.appendChild(paragraph);
+      divRecipe.appendChild(modalButton);
+      divRecipe.appendChild(deleteButton);
       
       //crear modal
       let str = `
-        <div class="modal fade" id="recetaModalID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modalRecipeID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="recetaModalID${[i]}">${recetasLocales[i].nombreReceta}</h5>
+              <h5 class="modal-title" id="modalRecipeID${[i]}">${localRecipes[i].recipeName}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -195,15 +197,15 @@ function getContainDiv() {
                   <ul>
                   `
             
-      for (let n = 0; n < recetasLocales[i].ingredientes.length; n++ ) {
+      for (let n = 0; n < localRecipes[i].ingredients.length; n++ ) {
         str += `
-        <li>${recetasLocales[i].ingredientes[n].nombre}</li>
+        <li>${localRecipes[i].ingredients[n].nombre}</li>
         `
       }
       str += `
         </ul>
         <h6>Procedimiento:</h6>
-        <p>${recetasLocales[i].procedimiento}</p>
+        <p>${localRecipes[i].method}</p>
         </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -213,41 +215,38 @@ function getContainDiv() {
         </div>
       </div>`
     
-      modalRecetas.innerHTML += str;
+      modalRecipes.innerHTML += str;
 
     }
     
-      const content = document.getElementById('listaRecetas');
+      const content = document.getElementById('recipeList');
       content.innerHTML = "";
       content.appendChild(divContainer);
-
-      
-  
-
 }
+
 document.addEventListener("DOMContentLoaded", function(e){
   getContainDiv();
 })
 
-//asincronismo 
-let listaJson = document.getElementById('listaRecetasJSON')
-let listaJsonModal = document.getElementById('listaJsonModal')
+//asincronismo archivo JSON
+let jsonList = document.getElementById('jsonRecipeList')
+let jsonModalList = document.getElementById('jsonModalList')
 
-async function obtenerRecetas() {
-  const response = await fetch('recetas.json')
+async function getRecipes() {
+  const response = await fetch('recipes.json')
   return await response.json()
 }
 
-obtenerRecetas().then(recetasVarias => {
+getRecipes().then(severalRecipes => {
   
-  for (let i = 0; i < recetasVarias.length; i++) {
+  for (let i = 0; i < severalRecipes.length; i++) {
   
-    listaJson.innerHTML += `
+    jsonList.innerHTML += `
     <div class="card border-info mb-3" style="max-width: 20rem;">
-    <div class="card-header">${recetasVarias[i].nombre}</div>
+    <div class="card-header">${severalRecipes[i].name}</div>
     <div class="card-body">
       <h4 class="card-title">Descripción</h4>
-      <p class="card-text">${recetasVarias[i].descripcion}</p>
+      <p class="card-text">${severalRecipes[i].description}</p>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recetaJsonModalID${[i]}">Mostrar</button>
     </div>
     </div>
@@ -257,7 +256,7 @@ obtenerRecetas().then(recetasVarias => {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="recetaJsonModalID${[i]}">${recetasVarias[i].nombre}</h5>
+              <h5 class="modal-title" id="recetaJsonModalID${[i]}">${severalRecipes[i].name}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -265,15 +264,15 @@ obtenerRecetas().then(recetasVarias => {
                   <ul>
                   `
             
-      for (let n = 0; n < recetasVarias[i].ingredientes.length; n++ ) {
+      for (let n = 0; n < severalRecipes[i].ingredients.length; n++ ) {
         str += `
-        <li>${recetasVarias[i].ingredientes[n].nombre}</li>
+        <li>${severalRecipes[i].ingredients[n].name}</li>
         `
       }
       str += `
         </ul>
         <h6>Procedimiento:</h6>
-        <p>${recetasVarias[i].procedimiento}</p>
+        <p>${severalRecipes[i].procedimiento}</p>
         </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -283,29 +282,29 @@ obtenerRecetas().then(recetasVarias => {
         </div>
       </div>`
     
-      listaJsonModal.innerHTML += str;
+      jsonModalList.innerHTML += str;
   }
 })
 
 
 //barrar receta usando boton
-const listaRecetas = document.getElementById('listaRecetas');
+const recipeList = document.getElementById('recipeList');
 
-function eliminarReceta(id){
-  recetas = recetas.filter(item => item.id !== id);
+function deleteRecipes(id){
+  recipes = recipes.filter(item => item.id !== id);
 
   //se elimina receta del DOM
-  const receta = document.getElementById('recetaID' + id);
-  receta.parentNode.removeChild(receta);
+  const recipe = document.getElementById('recipeID' + id);
+  recipe.parentNode.removeChild(recipe);
 
   //se actualiza localstorage
-  localStorage.setItem('recetasLocales', JSON.stringify(recetas));
+  localStorage.setItem('localRecipes', JSON.stringify(recipes));
 };
 
-listaRecetas.addEventListener('click', (e) => {
+recipeList.addEventListener('click', (e) => {
 
   if (e.target.matches('.btn.btn-lg.btn-outline-danger')) {
-    eliminarReceta(Number(e.target.value))
+    deleteRecipes(Number(e.target.value))
   };
 
 });
