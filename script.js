@@ -105,7 +105,6 @@ formRecipe.addEventListener('submit', (e) => {
       'Por favor ingrese nombre de receta',
       'error'
     )
-    document.getElementById('alerta').style.color = "red";
   } else {
     //Se utilizó libreria "Sweet alert" para mostrar una alerta de guardado
     Swal.fire({
