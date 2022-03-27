@@ -250,6 +250,8 @@ getRecipes().then(severalRecipes => {
     </div>
     </div>
     `
+
+    //modal Json
     let str = `
         <div class="modal fade" id="recetaJsonModalID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -286,7 +288,7 @@ getRecipes().then(severalRecipes => {
 })
 
 
-//barrar receta usando boton
+//borrar receta usando boton
 const recipeList = document.getElementById('recipeList');
 
 function deleteRecipes(id){
@@ -308,3 +310,20 @@ recipeList.addEventListener('click', (e) => {
 
 });
 
+
+// tratando de hacer barra busqueda
+const searchBar = document.getElementById('search');
+
+searchBar.addEventListener('keyup', (e) => {
+  
+  let localRecipes = JSON.parse(localStorage.getItem('localRecipes'));
+
+  const searchString = e.target.value.toLowerCase();
+  const filteredRecipes = localRecipes.filter( item => {
+
+    return item.recipeName.toLowerCase().includes(searchString);
+
+  })
+  console.log(filteredRecipes)
+  
+})

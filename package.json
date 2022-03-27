@@ -1,0 +1,23 @@
+{
+  "name": "js_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss scss/main.scss css/styles.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "build-bootstrap": "node-sass --include-path scss scss/bootstrap/scss/bootstrap.scss css/bootstrap.css",
+    "watch-bootstrap": "nodemon -e scss -x \"npm run build-bootstrap\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peladno/js_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peladno/js_project/issues"
+  },
+  "homepage": "https://github.com/peladno/js_project#readme"
+}
