@@ -11,33 +11,50 @@
   <title>Generador de recetas</title>
 </head>
 <body>
-  <h1>Generador de Recetas</h1>
-  <form id="formRecipe">
-    <input type="text" placeholder="Nombre de receta" id="recipeName" name="recipeName">
-    <div>
-      <input type="text" placeholder="Cantidad" id="quantity0" name="quantity0">
-      <input type="text" placeholder="Medida" id="measure0" name="measure0">
-      <input type="text" placeholder="Ingrediente" id="ingredient0" name="ingredient0">
-      <input type="text" placeholder="Precio" id="price0" name="price0">
-      <input type="hidden" value="0" id="total_chq">
-      <button id="add" class="btn btn-primary">+</button><button id="remove" class="btn btn-primary">-</button>
-    </div>
-    <div id="ingredients"></div><br>
-    <textarea placeholder="Procedimiento" id="method" name="method" rows="10" cols="90"></textarea><br>
-    <textarea placeholder="Descripción" id="description" name="description" rows="2" cols="90"></textarea><br>
-    <button type="submit" id="save" class="btn btn-primary">Guardar</button>
-  </form><br>
-  <h2>Recetas Demo</h2>
-  <div id="jsonRecipeList" class="row"></div>
-  <div id="jsonModalList"></div>
-  <h2>Tus Recetas</h2>
-  <div class="searchWrapper">
-    <input type="search" name="search" id="search">
-  </div>
-  <div id="recipeList" class="row"></div>
-  <div id="modalRecipes"></div>
+  <h1 class="text-center">Generador de Recetas</h1>
+  <main>
+    <section class="formSection">
+      <form id="formRecipe" class="formRecipe">
+        <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName">
+        <div class="formInputs">
+          <input type="text" placeholder="Cantidad" id="quantity0" class="quantityForm" name="quantity0">
+          <input type="text" placeholder="Medida" id="measure0" class="measureForm" name="measure0">
+          <input type="text" placeholder="Ingrediente" id="ingredient0" class="ingredientForm" name="ingredient0">
+          <input type="text" placeholder="Precio" id="price0" class="priceForm" name="price0">
+          <input type="hidden" value="0" id="total_chq">
+          <button id="add" class="btn btn-primary">+</button><button id="remove" class="btn btn-primary">-</button><br>
+          <div id="ingredients" class="ingredientsForm"></div>
+        </div>
+        
+        <textarea placeholder="Procedimiento" id="method" class="methodForm" name="method" rows="10" cols="90"></textarea>
+        <textarea placeholder="Descripción" id="description" class="descriptionForm" name="description" rows="2" cols="90"></textarea>
+        <button type="submit" id="save" class="btn btn-primary">Guardar</button>
+      </form>
+    </section>
+    <section class="jsonSection">
+      <article class="jsonArticle">
+        <h2 class="jsonTitle">Recetas Demo</h2>
+        <div id="jsonRecipeList"></div>
+        <div id="jsonModalList"></div>
+      </article>
+      <article>
+        <h2>Tus Recetas</h2>
+        <div class="searchWrapper">
+          <input type="search" name="search" id="search">
+        </div>
+        <div id="recipeList" class="row"></div>
+        <div id="modalRecipes"></div>
+      </article>
+    </section>
+    
+   
+  </main>
+  
+  <!--bootstrap js-->
   <script src="scss/bootstrap/js/bootstrap.js"></script>
+  <!--DOM purify-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
+  <!--sweet alert-->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="script.js"></script>
 </body>

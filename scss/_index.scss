@@ -1,0 +1,75 @@
+h1 {
+  font-size: $font-size-h1;
+  text-align: center;
+  padding: 2rem;
+  background-color: #0B5351;
+  color: white
+}
+
+main {
+  @include flex-box (column, center, none);
+  margin: 0 3rem 3rem 3rem;
+
+  .formSection {
+    margin: 2rem;
+  }
+
+  .formRecipe {
+    @include flex-box (column, none, flex-start);
+    margin: 0 2rem 2rem 0;
+;   padding: 5rem;
+    width: 1000px;
+    border-style: solid;
+    border-color: #092327;
+    border-radius: 1rem;
+
+    .methodForm {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .descriptionForm {
+      margin-bottom: 0.5rem;
+
+    }
+  }
+}
+
+.formInputs {
+  width: 100%;
+  
+  #add {
+    width: 1.8rem;
+    padding: 0.1rem 0.6rem;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+  }
+
+  #remove {
+    width: 1.8rem;
+    padding: 0.1rem 0.6rem;
+    margin-left: 0.3rem;
+  }
+
+  input {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+
+  }
+}
+
+.jsonTitle {
+  text-align: center;
+  font-size: $font-size-h2;
+}
+
+#jsonRecipeList {
+  @include flex-box (row, stretch, center);
+  flex-wrap: wrap;
+
+  .card {
+    margin: 1.5rem 1.5rem 1.5rem 0rem;
+  }
+}
+
+

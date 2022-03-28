@@ -47,10 +47,10 @@ add.addEventListener('click', (e) => {
   //div creados con los inputs correspondientes
   let newInputs = document.createElement("div");
     newInputs.innerHTML = `
-      <input type="text" placeholder="Cantidad" id="cantidad${clicks}" name="cantidad${clicks}">
-      <input type="text" placeholder="Medida" id="medida${clicks}" name="medida${clicks}">
-      <input type="text" placeholder="Ingrediente" id="ingrediente${clicks}" name="ingrediente${clicks}">
-      <input type="text" placeholder="Precio" id="precio${clicks}" name="precio${clicks}">
+      <input type="text" placeholder="Cantidad" id="quantity${clicks}" name="quantity${clicks}">
+      <input type="text" placeholder="Medida" id="measure${clicks}" name="measure${clicks}">
+      <input type="text" placeholder="Ingrediente" id="ingredient${clicks}" name="ingredient${clicks}">
+      <input type="text" placeholder="Precio" id="price${clicks}" name="price${clicks}">
       `
     ingredients.append(newInputs);
 
@@ -211,7 +211,7 @@ function getContainDiv() {
               <button type="button" class="btn btn-primary">Understood</button>
             </div>
           </div>
-        </div>
+        </div> 
       </div>`
     
       modalRecipes.innerHTML += str;
@@ -273,7 +273,7 @@ getRecipes().then(severalRecipes => {
       str += `
         </ul>
         <h6>Procedimiento:</h6>
-        <p>${severalRecipes[i].procedimiento}</p>
+        <p>${severalRecipes[i].method}</p>
         </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
