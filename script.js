@@ -41,18 +41,21 @@ let show = document.getElementById('show');
 add.addEventListener('click', (e) => {
   e.preventDefault()
 
+  let formInputs = document.getElementById('formInputs')
   //se setea un vaalor de un click
   let clicks = parseInt(document.getElementById('total_chq').value)+1;
 
   //div creados con los inputs correspondientes
   let newInputs = document.createElement("div");
-    newInputs.innerHTML = `
+  newInputs.id = "newInputs" + clicks;
+    newInputs.innerHTML += `
       <input type="text" placeholder="Cantidad" id="quantity${clicks}" name="quantity${clicks}">
       <input type="text" placeholder="Medida" id="measure${clicks}" name="measure${clicks}">
       <input type="text" placeholder="Ingrediente" id="ingredient${clicks}" name="ingredient${clicks}">
       <input type="text" placeholder="Precio" id="price${clicks}" name="price${clicks}">
       `
     ingredients.append(newInputs);
+    
 
     //se iguala con let clicks para que un nuevo click se añada +1
     document.getElementById('total_chq').value = clicks;
@@ -67,10 +70,7 @@ remove.addEventListener('click', (e) => {
   if (clicks2 >= 1){
     //operario avanzado para remover inputs
     clicks2 > 0 &&
-    document.getElementById('quantity'+clicks2).remove();
-    document.getElementById('measure'+clicks2).remove();
-    document.getElementById('ingredient'+clicks2).remove();
-    document.getElementById('price'+clicks2).remove();
+    document.getElementById('newInputs'+clicks2).remove();
     document.getElementById('total_chq').value = clicks2 -1;
   }
 })
@@ -253,7 +253,7 @@ getRecipes().then(severalRecipes => {
 
     //modal Json
     let str = `
-        <div class="modal fade" id="recetaJsonModalID${[i]}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="recetaJsonModalID${[i]}"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
