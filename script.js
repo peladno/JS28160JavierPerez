@@ -139,7 +139,6 @@ function getContainDiv() {
 
   //creacion div container
   const divContainer = document.createElement("div");
-  divContainer.className = "row";
   divContainer.id = "divContainer";
 
     for (let i = 0; i < localRecipes.length; i++) {
@@ -149,6 +148,9 @@ function getContainDiv() {
       divRecipe.className = "card border-info mb-3";
       divRecipe.style = "max-width: 20rem;";
       divRecipe.id = "recipeID" + [i]; 
+
+      const divCardBody = document.createElement("div");
+      divCardBody.className = "card-body"
     
       const title = document.createElement("div");
       title.textContent = `${localRecipes[i].recipeName}`;
@@ -160,8 +162,11 @@ function getContainDiv() {
       const paragraph = document.createElement("p");
       paragraph.textContent = `${localRecipes[i].description}`;
 
+      const divButton = document.createElement('div');
+      divButton.className = "divButton"
+
       const modalButton = document.createElement("button");
-      modalButton.textContent = "Show";
+      modalButton.textContent = "Mostrar";
       modalButton.type = "button";
       modalButton.className ="btn btn-primary";
       modalButton.setAttribute ("data-bs-toggle", "modal");
@@ -171,16 +176,18 @@ function getContainDiv() {
       deleteButton.className = "btn btn-lg btn-outline-danger";
       deleteButton.ariaLabel = "Borrar" + `${localRecipes[i].recipeName}`;
       deleteButton.value = `${localRecipes[i].id}`;
-      deleteButton.textContent = `Eliminar Receta`;
+      deleteButton.textContent = "Eliminar";
      
 
         //se agrega todo junto a los div en orden
-      divContainer.appendChild(divRecipe);    
+      divContainer.appendChild(divRecipe);
       divRecipe.appendChild(title);
-      divRecipe.appendChild(subTitle);
-      divRecipe.appendChild(paragraph);
-      divRecipe.appendChild(modalButton);
-      divRecipe.appendChild(deleteButton);
+      divRecipe.appendChild(divCardBody)    
+      divCardBody.appendChild(subTitle);
+      divCardBody.appendChild(paragraph);
+      divCardBody.appendChild(divButton)
+      divButton.appendChild(modalButton);
+      divButton.appendChild(deleteButton);
       
       //crear modal
       let str = `
@@ -314,6 +321,7 @@ recipeList.addEventListener('click', (e) => {
 // tratando de hacer barra busqueda
 const searchBar = document.getElementById('search');
 
+/*
 searchBar.addEventListener('keyup', (e) => {
   
   let localRecipes = JSON.parse(localStorage.getItem('localRecipes'));
@@ -326,4 +334,4 @@ searchBar.addEventListener('keyup', (e) => {
   })
   console.log(filteredRecipes)
   
-})
+})*/

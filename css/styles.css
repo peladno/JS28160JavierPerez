@@ -4,19 +4,20 @@
   box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; }
 
-h1 {
-  font-size: 3rem;
-  text-align: center;
-  padding: 2rem;
-  background-color: #0B5351;
-  color: white; }
-
 main {
+  background-image: url(../images/42258.jpg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: none;
-  margin: 0 3rem 3rem 3rem; }
+  padding: 0 3rem 3rem 3rem; }
+  main h1 {
+    font-size: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.692);
+    color: black;
+    border-radius: 2.5rem; }
   main .formSection {
     margin: 2rem; }
   main .formRecipe {
@@ -24,6 +25,7 @@ main {
     flex-direction: column;
     align-items: none;
     justify-content: flex-start;
+    background-color: rgba(255, 255, 255, 0.555);
     margin: 0 2rem 2rem 0;
     padding: 5rem;
     width: 1000px;
@@ -53,7 +55,8 @@ main {
 
 .jsonTitle {
   text-align: center;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  background-color: rgba(77, 77, 77, 0.247); }
 
 #jsonRecipeList {
   display: flex;
@@ -63,3 +66,32 @@ main {
   flex-wrap: wrap; }
   #jsonRecipeList .card {
     margin: 1.5rem 1.5rem 1.5rem 0rem; }
+    #jsonRecipeList .card .card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: none;
+      justify-content: space-between; }
+
+.recipeListTitle {
+  font-size: 2.5rem;
+  text-align: center;
+  background-color: rgba(77, 77, 77, 0.247); }
+
+#recipeList {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap; }
+  #recipeList .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: none;
+    justify-content: space-between; }
+    #recipeList .card-body .divButton {
+      display: flex;
+      flex-direction: row;
+      align-items: none;
+      justify-content: space-between; }
+      #recipeList .card-body .divButton .btn {
+        width: 120px; }

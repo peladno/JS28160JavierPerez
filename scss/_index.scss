@@ -1,14 +1,16 @@
-h1 {
-  font-size: $font-size-h1;
-  text-align: center;
-  padding: 2rem;
-  background-color: #0B5351;
-  color: white
-}
-
 main {
+
+  h1 {
+    font-size: $font-size-h1;
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.692);
+    color: black;
+    border-radius: 2.5rem;
+  }
+  background-image: url(../images/42258.jpg);
   @include flex-box (column, center, none);
-  margin: 0 3rem 3rem 3rem;
+  padding: 0 3rem 3rem 3rem;
 
   .formSection {
     margin: 2rem;
@@ -16,6 +18,7 @@ main {
 
   .formRecipe {
     @include flex-box (column, none, flex-start);
+    background-color: rgba(255, 255, 255, 0.555);
     margin: 0 2rem 2rem 0;
 ;   padding: 5rem;
     width: 1000px;
@@ -61,6 +64,8 @@ main {
 .jsonTitle {
   text-align: center;
   font-size: $font-size-h2;
+  background-color: rgba(77, 77, 77, 0.247);
+  
 }
 
 #jsonRecipeList {
@@ -69,7 +74,35 @@ main {
 
   .card {
     margin: 1.5rem 1.5rem 1.5rem 0rem;
+
+    .card-body {
+      @include flex-box (column, none, space-between);
+
+    }
+    
   }
 }
 
+.recipeListTitle {
+  font-size: $font-size-h2;
+  text-align: center;
+  background-color: rgba(77, 77, 77, 0.247);
+}
+
+#recipeList {
+  @include flex-box (row, stretch, center);
+  flex-wrap: wrap;
+
+  .card-body {
+    @include flex-box (column, none, space-between);
+
+    .divButton {
+      @include flex-box (row, none, space-between);
+
+      .btn {
+        width: 120px;
+      }
+    }
+  }
+}
 

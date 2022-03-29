@@ -11,8 +11,8 @@
   <title>Generador de recetas</title>
 </head>
 <body>
-  <h1 class="text-center">Generador de Recetas</h1>
   <main>
+    <h1 class="text-center">Generador de Recetas</h1>
     <section class="formSection">
       <form id="formRecipe" class="formRecipe">
         <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName">
@@ -27,7 +27,7 @@
         </div>
         
         <textarea placeholder="Procedimiento" id="method" class="methodForm" name="method" rows="10" cols="90"></textarea>
-        <textarea placeholder="Descripción" id="description" class="descriptionForm" name="description" rows="2" cols="90"></textarea>
+        <textarea placeholder="Descripción" id="description" class="descriptionForm" name="description" rows="3" cols="90" maxlength="250"></textarea>
         <button type="submit" id="save" class="btn btn-primary">Guardar</button>
       </form>
     </section>
@@ -38,14 +38,15 @@
         <div id="jsonModalList"></div>
       </article>
       <article>
-        <h2>Tus Recetas</h2>
-        <div class="searchWrapper">
+        <h2 class="recipeListTitle" >Tus Recetas</h2>
+        <!--<div class="searchWrapper">
           <input type="search" name="search" id="search">
-        </div>
-        <div id="recipeList" class="row"></div>
+        </div>-->
+        <div id="recipeList"></div>
         <div id="modalRecipes"></div>
       </article>
     </section>
+    <a href='https://www.freepik.com/vectors/background'>Background vector created by freepik - www.freepik.com</a>
   </main>
   
   <!--bootstrap js-->
