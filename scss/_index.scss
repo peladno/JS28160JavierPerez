@@ -19,7 +19,7 @@ main {
 
   .formRecipe {
     @include flex-box (column, none, flex-start);
-    background-color: rgba(255, 255, 255, 0.555);
+    background-color: rgba(255, 255, 255, 0.749);
     margin: 0 2rem 2rem 0;
 ;   padding: 5rem;
     width: 1000px;
@@ -97,7 +97,8 @@ main {
 .jsonTitle {
   text-align: center;
   font-size: $font-size-h2;
-  background-color: rgba(77, 77, 77, 0.247);
+  color: white;
+  background-color: rgba(77, 77, 77, 0.521);
   
 }
 
@@ -119,7 +120,8 @@ main {
 .recipeListTitle {
   font-size: $font-size-h2;
   text-align: center;
-  background-color: rgba(77, 77, 77, 0.247);
+  color: white;
+  background-color: rgba(77, 77, 77, 0.521);
 }
 
 #divContainer {
