@@ -1,7 +1,7 @@
 //clase para la creacion de array de ingredientes
 class Ingredient {
   constructor(name, quantity, measure, price) {
-    this.nombre = name;
+    this.name = name;
     this.quantity = quantity;
     this.measure = measure; 
     this.price = price;
@@ -55,8 +55,6 @@ add.addEventListener('click', (e) => {
       <input type="text" placeholder="Precio" id="price${clicks}" name="price${clicks}">
       `
     ingredients.append(newInputs);
-    
-
     //se iguala con let clicks para que un nuevo click se añada +1
     document.getElementById('total_chq').value = clicks;
 })
@@ -205,7 +203,7 @@ function getContainDiv() {
             
       for (let n = 0; n < localRecipes[i].ingredients.length; n++ ) {
         str += `
-        <li>${localRecipes[i].ingredients[n].nombre}</li>
+        <li>${localRecipes[i].ingredients[n].quantity} ${localRecipes[i].ingredients[n].measure} de ${localRecipes[i].ingredients[n].name}</li>
         `
       }
       str += `
@@ -215,7 +213,6 @@ function getContainDiv() {
         </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
             </div>
           </div>
         </div> 
@@ -274,7 +271,7 @@ getRecipes().then(severalRecipes => {
             
       for (let n = 0; n < severalRecipes[i].ingredients.length; n++ ) {
         str += `
-        <li>${severalRecipes[i].ingredients[n].name}</li>
+        <li>${severalRecipes[i].ingredients[n].quantity} ${severalRecipes[i].ingredients[n].measure} de ${severalRecipes[i].ingredients[n].name}</li>
         `
       }
       str += `
@@ -284,7 +281,6 @@ getRecipes().then(severalRecipes => {
         </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
             </div>
           </div>
         </div>

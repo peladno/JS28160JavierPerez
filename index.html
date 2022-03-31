@@ -15,18 +15,25 @@
     <h1 class="text-center">Generador de Recetas</h1>
     <section class="formSection">
       <form id="formRecipe" class="formRecipe">
+        <p>1.- Por favor ingrese nombre de la receta.</p>
         <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName">
-        <div id="formInputs" class="formInputs">
-          <input type="text" placeholder="Cantidad" id="quantity0" class="quantityForm" name="quantity0">
-          <input type="text" placeholder="Medida" id="measure0" class="measureForm" name="measure0">
-          <input type="text" placeholder="Ingrediente" id="ingredient0" class="ingredientForm" name="ingredient0">
-          <input type="text" placeholder="Precio" id="price0" class="priceForm" name="price0">
-          <input type="hidden" value="0" id="total_chq">
-          <button id="add" class="btn btn-primary">+</button><button id="remove" class="btn btn-primary">-</button><br>
+        <div id="formInputs" class="formInputs"> 
+          <p>2.- Ingrese cantidad, medida, ingredientes y precio por kg, unidad o litros a usar.</p>
+          <div class="inputs">
+            <input type="text" placeholder="Cantidad" id="quantity0" class="quantityForm" name="quantity0">
+            <input type="text" placeholder="Medida" id="measure0" class="measureForm" name="measure0">
+            <input type="text" placeholder="Ingrediente" id="ingredient0" class="ingredientForm" name="ingredient0">
+            <input type="text" placeholder="Precio" id="price0" class="priceForm" name="price0">
+            <input type="hidden" value="0" id="total_chq">
+          </div>
+          <div class="buttonsForm">
+            <button id="add" class="btn btn-primary">+</button><button id="remove" class="btn btn-primary">-</button>
+          </div>
           <div id="ingredients" class="ingredientsForm"></div>
         </div>
-        
+        <p>4.- Escriba el procedimiento de la receta.</p>
         <textarea placeholder="Procedimiento" id="method" class="methodForm" name="method" rows="10" cols="90"></textarea>
+        <p>5.- Escriba Breve description de la receta.</p>
         <textarea placeholder="Descripción" id="description" class="descriptionForm" name="description" rows="3" cols="90" maxlength="250"></textarea>
         <button type="submit" id="save" class="btn btn-primary">Guardar</button>
       </form>

@@ -25,6 +25,15 @@ main {
     border-style: solid;
     border-color: #092327;
     border-radius: 1rem;
+    
+    input, textarea {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 5px 10px;
+  
+    }
+
 
     .methodForm {
       margin-top: 0.5rem;
@@ -40,6 +49,15 @@ main {
 
 .formInputs {
   width: 100%;
+  display: grid;
+  grid-template-areas: 
+    "title title "
+    "inputs buttons"
+    "newInputs buttons";
+
+  p {
+    grid-area: title;
+  }
   
   #add {
     width: 1.8rem;
@@ -54,10 +72,24 @@ main {
     margin-left: 0.3rem;
   }
 
-  input {
+  .inputs {
+    grid-area: inputs;
     margin-top: 0.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0.5rem;
+  }
 
+  .ingredientsForm {
+    grid-area: newInputs;
+
+    input {
+      margin-top: 0rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .buttonsForm {
+    grid-area: buttons;
+    margin-top: 0.5rem;
   }
 }
 
@@ -69,7 +101,7 @@ main {
 }
 
 #jsonRecipeList {
-  @include flex-box (row, stretch, center);
+  @include flex-box (row, stretch, left);
   flex-wrap: wrap;
 
   .card {
@@ -89,20 +121,27 @@ main {
   background-color: rgba(77, 77, 77, 0.247);
 }
 
-#recipeList {
-  @include flex-box (row, stretch, center);
+#divContainer {
+  @include flex-box (row, stretch, left);
   flex-wrap: wrap;
 
-  .card-body {
-    @include flex-box (column, none, space-between);
+  .card {
+    margin: 1.5rem 1.5rem 1.5rem 0rem;
+    width: 318px;
 
-    .divButton {
-      @include flex-box (row, none, space-between);
-
-      .btn {
-        width: 120px;
+    .card-body {
+      @include flex-box (column, none, space-between);
+      
+  
+      .divButton {
+        @include flex-box (row, none, space-between);
+  
+        .btn {
+          width: 120px;
+        }
       }
     }
   }
+  
 }
 

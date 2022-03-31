@@ -32,6 +32,11 @@ main {
     border-style: solid;
     border-color: #092327;
     border-radius: 1rem; }
+    main .formRecipe input, main .formRecipe textarea {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 5px 10px; }
     main .formRecipe .methodForm {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem; }
@@ -39,7 +44,11 @@ main {
       margin-bottom: 0.5rem; }
 
 .formInputs {
-  width: 100%; }
+  width: 100%;
+  display: grid;
+  grid-template-areas: "title title " "inputs buttons" "newInputs buttons"; }
+  .formInputs p {
+    grid-area: title; }
   .formInputs #add {
     width: 1.8rem;
     padding: 0.1rem 0.6rem;
@@ -49,9 +58,18 @@ main {
     width: 1.8rem;
     padding: 0.1rem 0.6rem;
     margin-left: 0.3rem; }
-  .formInputs input {
+  .formInputs .inputs {
+    grid-area: inputs;
     margin-top: 0.5rem;
-    margin-bottom: 0rem; }
+    margin-bottom: 0.5rem; }
+  .formInputs .ingredientsForm {
+    grid-area: newInputs; }
+    .formInputs .ingredientsForm input {
+      margin-top: 0rem;
+      margin-bottom: 0.5rem; }
+  .formInputs .buttonsForm {
+    grid-area: buttons;
+    margin-top: 0.5rem; }
 
 .jsonTitle {
   text-align: center;
@@ -62,7 +80,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: center;
+  justify-content: left;
   flex-wrap: wrap; }
   #jsonRecipeList .card {
     margin: 1.5rem 1.5rem 1.5rem 0rem; }
@@ -77,21 +95,24 @@ main {
   text-align: center;
   background-color: rgba(77, 77, 77, 0.247); }
 
-#recipeList {
+#divContainer {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: center;
+  justify-content: left;
   flex-wrap: wrap; }
-  #recipeList .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: none;
-    justify-content: space-between; }
-    #recipeList .card-body .divButton {
+  #divContainer .card {
+    margin: 1.5rem 1.5rem 1.5rem 0rem;
+    width: 318px; }
+    #divContainer .card .card-body {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: none;
       justify-content: space-between; }
-      #recipeList .card-body .divButton .btn {
-        width: 120px; }
+      #divContainer .card .card-body .divButton {
+        display: flex;
+        flex-direction: row;
+        align-items: none;
+        justify-content: space-between; }
+        #divContainer .card .card-body .divButton .btn {
+          width: 120px; }
