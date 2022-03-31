@@ -16,14 +16,14 @@
     <section class="formSection">
       <form id="formRecipe" class="formRecipe">
         <p>1.- Por favor ingrese nombre de la receta.</p>
-        <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName">
+        <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName" maxlength="30">
         <div id="formInputs" class="formInputs"> 
           <p>2.- Ingrese cantidad, medida, ingredientes y precio por kg, unidad o litros a usar.</p>
           <div class="inputs">
-            <input type="text" placeholder="Cantidad" id="quantity0" class="quantityForm" name="quantity0">
-            <input type="text" placeholder="Medida" id="measure0" class="measureForm" name="measure0">
-            <input type="text" placeholder="Ingrediente" id="ingredient0" class="ingredientForm" name="ingredient0">
-            <input type="text" placeholder="Precio" id="price0" class="priceForm" name="price0">
+            <input type="text" placeholder="Cantidad" id="quantity0" class="quantityForm" name="quantity0" maxlength="10">
+            <input type="text" placeholder="Medida" id="measure0" class="measureForm" name="measure0" maxlength="10">
+            <input type="text" placeholder="Ingrediente" id="ingredient0" class="ingredientForm" name="ingredient0" maxlength="20">
+            <input type="text" placeholder="Precio" id="price0" class="priceForm" name="price0" maxlength="10">
             <input type="hidden" value="0" id="total_chq">
           </div>
           <div class="buttonsForm">

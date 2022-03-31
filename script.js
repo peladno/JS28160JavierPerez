@@ -49,10 +49,10 @@ add.addEventListener('click', (e) => {
   let newInputs = document.createElement("div");
   newInputs.id = "newInputs" + clicks;
     newInputs.innerHTML += `
-      <input type="text" placeholder="Cantidad" id="quantity${clicks}" name="quantity${clicks}">
-      <input type="text" placeholder="Medida" id="measure${clicks}" name="measure${clicks}">
-      <input type="text" placeholder="Ingrediente" id="ingredient${clicks}" name="ingredient${clicks}">
-      <input type="text" placeholder="Precio" id="price${clicks}" name="price${clicks}">
+      <input type="text" placeholder="Cantidad" id="quantity${clicks}" name="quantity${clicks}" maxlength="10">
+      <input type="text" placeholder="Medida" id="measure${clicks}" name="measure${clicks}" maxlength="10">
+      <input type="text" placeholder="Ingrediente" id="ingredient${clicks}" name="ingredient${clicks}" maxlength="20">
+      <input type="text" placeholder="Precio" id="price${clicks}" name="price${clicks}" maxlength="10">
       `
     ingredients.append(newInputs);
     //se iguala con let clicks para que un nuevo click se añada +1
@@ -86,47 +86,58 @@ formRecipe.addEventListener('submit', (e) => {
     let quantity = DOMPurify.sanitize(document.getElementById('quantity'+[i]).value);
     let measure = DOMPurify.sanitize(document.getElementById('measure'+[i]).value);
     let price = DOMPurify.sanitize(document.getElementById('price'+[i]).value);
-
-    const recipeIngredient = new Ingredient (ingredient, quantity, measure, price);
-    ingredientsList.push(recipeIngredient);
-  }
-  let recipeName = DOMPurify.sanitize(document.getElementById('recipeName').value);
-  let method = DOMPurify.sanitize(document.getElementById('method').value);
-  let description = DOMPurify.sanitize(document.getElementById('description').value);
+    
+    //if para solo agregar numeros y no letras
+    if (isNaN(quantity) | isNaN(price)) {
+      Swal.fire(
+        'Error',
+        'Caracter incorrecto, por favor ingrese un numero en cantidad y/o precio',
+        'error'
+      )
+    } else {
+      const recipeIngredient = new Ingredient (ingredient, quantity, measure, price);
+      ingredientsList.push(recipeIngredient);
   
-  let ingredientsListCopy = [...ingredientsList] 
+      let recipeName = DOMPurify.sanitize(document.getElementById('recipeName').value);
+      let method = DOMPurify.sanitize(document.getElementById('method').value);
+      let description = DOMPurify.sanitize(document.getElementById('description').value);
+      
+      //copia array ingredientes
+      let ingredientsListCopy = [...ingredientsList] 
 
-  if (document.getElementById('recipeName').value === "") {
-    //Se utilizó libreria "Sweet alert" para mostrar una alerta de error
-    Swal.fire(
-      'Error',
-      'Por favor ingrese nombre de receta',
-      'error'
-    )
-  } else {
-    //Se utilizó libreria "Sweet alert" para mostrar una alerta de guardado
-    Swal.fire({
-      title: '¿Desea guardar receta?',
-      text: "No podrás revertir esta acción",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Guardar'
-    }).then((result) => {
-      if (result.isConfirmed) {
+      if (recipeName === "") {
+        //Se utilizó libreria "Sweet alert" para mostrar una alerta de error
         Swal.fire(
-          'Guardado',
-          'Su receta fue guardada!.',
-          'success'
+          'Error',
+          'Por favor ingrese nombre de receta',
+          'error'
         )
-        const recipe = new Recipe (recipeName, method, description, ingredientsListCopy);
-        recipes.push(recipe)
-        localStorage.setItem('localRecipes', JSON.stringify(recipes));
-        getContainDiv();
-        formRecipe.reset();
+      } else {
+        //Se utilizó libreria "Sweet alert" para mostrar una alerta de guardado
+        Swal.fire({
+          title: '¿Desea guardar receta?',
+          text: "No podrás revertir esta acción",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Guardar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Guardado',
+              'Su receta fue guardada!.',
+              'success'
+            )
+            const recipe = new Recipe (recipeName, method, description, ingredientsListCopy);
+            recipes.push(recipe)
+            localStorage.setItem('localRecipes', JSON.stringify(recipes));
+            getContainDiv();
+            formRecipe.reset();
+          }
+        })
       }
-    })
+    }
   }
 })
 
