@@ -2,10 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; }
+  font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; }
+
+body {
+  background-image: url(../images/42258.jpg);
+  background-position: center;
+  background-size: cover; }
 
 main {
-  background-image: url(../images/42258.jpg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,13 +18,14 @@ main {
   main h1 {
     font-size: 3rem;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     margin-top: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.692);
+    background-color: rgba(255, 255, 255, 0.749);
     color: black;
     border-radius: 2.5rem; }
   main .formSection {
-    margin: 2rem; }
+    margin: 2rem;
+    width: 55%; }
   main .formRecipe {
     display: flex;
     flex-direction: column;
@@ -29,10 +34,21 @@ main {
     background-color: rgba(255, 255, 255, 0.749);
     margin: 0 2rem 2rem 0;
     padding: 5rem;
-    width: 1000px;
+    width: 100%;
     border-style: solid;
     border-color: #092327;
-    border-radius: 1rem; }
+    border-radius: 1rem;
+    color: black; }
+    main .formRecipe .nameDiv {
+      display: flex;
+      flex-direction: row;
+      align-items: none;
+      justify-content: space-between;
+      margin-bottom: 0.5rem; }
+      main .formRecipe .nameDiv input {
+        width: 200px; }
+    main .formRecipe p {
+      font-size: 1.1rem; }
     main .formRecipe input, main .formRecipe textarea {
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -47,6 +63,7 @@ main {
 .formInputs {
   width: 100%;
   display: grid;
+  margin-bottom: 0.5rem;
   grid-template-areas: "title title " "inputs buttons" "newInputs buttons"; }
   .formInputs p {
     grid-area: title; }
@@ -61,16 +78,32 @@ main {
     margin-left: 0.3rem; }
   .formInputs .inputs {
     grid-area: inputs;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem; }
+    margin-top: 0.5rem; }
+    .formInputs .inputs input {
+      width: 180px;
+      margin-bottom: 0.5rem; }
   .formInputs .ingredientsForm {
     grid-area: newInputs; }
     .formInputs .ingredientsForm input {
       margin-top: 0rem;
-      margin-bottom: 0.5rem; }
+      margin-bottom: 0.5rem;
+      width: 180px; }
   .formInputs .buttonsForm {
     grid-area: buttons;
     margin-top: 0.5rem; }
+
+.card {
+  margin: 1.5rem 1.5rem 1.5rem 0rem;
+  border-color: #092327;
+  width: 318px; }
+  .card .card-header {
+    color: white;
+    background-color: rgba(68, 66, 66, 0.741); }
+  .card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: none;
+    justify-content: space-between; }
 
 .jsonTitle {
   text-align: center;
@@ -84,13 +117,6 @@ main {
   align-items: stretch;
   justify-content: left;
   flex-wrap: wrap; }
-  #jsonRecipeList .card {
-    margin: 1.5rem 1.5rem 1.5rem 0rem; }
-    #jsonRecipeList .card .card-body {
-      display: flex;
-      flex-direction: column;
-      align-items: none;
-      justify-content: space-between; }
 
 .recipeListTitle {
   font-size: 2.5rem;
@@ -104,18 +130,13 @@ main {
   align-items: stretch;
   justify-content: left;
   flex-wrap: wrap; }
-  #divContainer .card {
-    margin: 1.5rem 1.5rem 1.5rem 0rem;
-    width: 318px; }
-    #divContainer .card .card-body {
-      display: flex;
-      flex-direction: column;
-      align-items: none;
-      justify-content: space-between; }
-      #divContainer .card .card-body .divButton {
-        display: flex;
-        flex-direction: row;
-        align-items: none;
-        justify-content: space-between; }
-        #divContainer .card .card-body .divButton .btn {
-          width: 120px; }
+  #divContainer .card .card-body .dateRecipe {
+    color: #b6b6b6;
+    font-style: oblique; }
+  #divContainer .card .card-body .divButton {
+    display: flex;
+    flex-direction: row;
+    align-items: none;
+    justify-content: space-between; }
+    #divContainer .card .card-body .divButton .btn {
+      width: 120px; }

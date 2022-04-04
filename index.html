@@ -15,8 +15,11 @@
     <h1 class="text-center">Generador de Recetas</h1>
     <section class="formSection">
       <form id="formRecipe" class="formRecipe">
-        <p>1.- Por favor ingrese nombre de la receta.</p>
-        <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName" maxlength="30">
+        <p>1.- Por favor ingrese nombre y fecha de la receta.</p>
+        <div class="nameDiv">
+          <input type="text" placeholder="Nombre de receta" id="recipeName" class="formName" name="recipeName" maxlength="30">
+          <input type="date" id="recipeDate" value="2022-04-03">
+        </div>
         <div id="formInputs" class="formInputs"> 
           <p>2.- Ingrese cantidad, medida, ingredientes y precio por kg, unidad o litros a usar.</p>
           <div class="inputs">

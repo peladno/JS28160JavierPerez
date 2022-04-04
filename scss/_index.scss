@@ -1,20 +1,26 @@
+body {
+  background-image: url(../images/42258.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
 main {
+  @include flex-box (column, center, none);
+  padding: 0 3rem 3rem 3rem;
 
   h1 {
     font-size: $font-size-h1;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     margin-top: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.692);
+    background-color: rgba(255, 255, 255, 0.749);
     color: black;
     border-radius: 2.5rem;
   }
-  background-image: url(../images/42258.jpg);
-  @include flex-box (column, center, none);
-  padding: 0 3rem 3rem 3rem;
 
   .formSection {
     margin: 2rem;
+    width: 55%;
   }
 
   .formRecipe {
@@ -22,11 +28,25 @@ main {
     background-color: rgba(255, 255, 255, 0.749);
     margin: 0 2rem 2rem 0;
 ;   padding: 5rem;
-    width: 1000px;
+    width: 100%;
     border-style: solid;
     border-color: #092327;
     border-radius: 1rem;
-    
+    color: black;
+
+    .nameDiv {
+      @include flex-box(row, none, space-between);
+      margin-bottom: 0.5rem;
+  
+      input {
+        width: 200px;
+      }
+    }
+  
+    p {
+      font-size: 1.1rem;
+    }
+   
     input, textarea {
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -34,7 +54,6 @@ main {
       padding: 5px 10px;
   
     }
-
 
     .methodForm {
       margin-top: 0.5rem;
@@ -48,9 +67,11 @@ main {
   }
 }
 
+
 .formInputs {
   width: 100%;
   display: grid;
+  margin-bottom: 0.5rem;
   grid-template-areas: 
     "title title "
     "inputs buttons"
@@ -76,7 +97,11 @@ main {
   .inputs {
     grid-area: inputs;
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+
+    input {
+      width: 180px;
+      margin-bottom: 0.5rem;
+    }
   }
 
   .ingredientsForm {
@@ -85,6 +110,7 @@ main {
     input {
       margin-top: 0rem;
       margin-bottom: 0.5rem;
+      width: 180px;
     }
   }
 
@@ -92,6 +118,23 @@ main {
     grid-area: buttons;
     margin-top: 0.5rem;
   }
+}
+
+.card {
+  margin: 1.5rem 1.5rem 1.5rem 0rem;
+  border-color: #092327;
+  width: 318px;
+
+  .card-header {
+    color: rgb(255, 255, 255);
+    background-color: rgba(68, 66, 66, 0.741);
+  }
+
+  .card-body {
+    @include flex-box (column, none, space-between);
+
+  }
+  
 }
 
 .jsonTitle {
@@ -105,17 +148,8 @@ main {
 #jsonRecipeList {
   @include flex-box (row, stretch, left);
   flex-wrap: wrap;
-
-  .card {
-    margin: 1.5rem 1.5rem 1.5rem 0rem;
-
-    .card-body {
-      @include flex-box (column, none, space-between);
-
-    }
-    
-  }
 }
+
 
 .recipeListTitle {
   font-size: $font-size-h2;
@@ -129,13 +163,14 @@ main {
   flex-wrap: wrap;
 
   .card {
-    margin: 1.5rem 1.5rem 1.5rem 0rem;
-    width: 318px;
 
     .card-body {
-      @include flex-box (column, none, space-between);
-      
-  
+
+      .dateRecipe {
+        color: rgb(182, 182, 182);
+        font-style: oblique;
+      }
+
       .divButton {
         @include flex-box (row, none, space-between);
   

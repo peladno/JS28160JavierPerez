@@ -5,18 +5,19 @@ class Ingredient {
     this.quantity = quantity;
     this.measure = measure; 
     this.price = price;
-    this.Totalprice = this.quantity * this.price; 
+    this.totalPrice = this.quantity * this.price; 
   }
 };
 
 //clase para la creacion de array de receta, que incluye array de ingredientes
 class Recipe {
-  constructor(recipeName, method, description, ingredients){
+  constructor(recipeName, method, description, ingredients, date){
   this.id = recipes.length;  
   this.recipeName = recipeName;
   this.method = method;
   this.description = description;
   this.ingredients = ingredients;
+  this.date = date;
   }
 }
 
@@ -101,6 +102,7 @@ formRecipe.addEventListener('submit', (e) => {
       let recipeName = DOMPurify.sanitize(document.getElementById('recipeName').value);
       let method = DOMPurify.sanitize(document.getElementById('method').value);
       let description = DOMPurify.sanitize(document.getElementById('description').value);
+      let dateRecipe = document.getElementById('recipeDate').value;
       
       //copia array ingredientes
       let ingredientsListCopy = [...ingredientsList] 
@@ -129,7 +131,7 @@ formRecipe.addEventListener('submit', (e) => {
               'Su receta fue guardada!.',
               'success'
             )
-            const recipe = new Recipe (recipeName, method, description, ingredientsListCopy);
+            const recipe = new Recipe (recipeName, method, description, ingredientsListCopy, dateRecipe);
             recipes.push(recipe)
             localStorage.setItem('localRecipes', JSON.stringify(recipes));
             getContainDiv();
@@ -154,7 +156,7 @@ function getContainDiv() {
 
       //se crea div que contiene una receta
       const divRecipe = document.createElement("div");
-      divRecipe.className = "card border-info mb-3";
+      divRecipe.className = "card mb-3";
       divRecipe.style = "max-width: 20rem;";
       divRecipe.id = "recipeID" + [i]; 
 
@@ -170,6 +172,10 @@ function getContainDiv() {
     
       const paragraph = document.createElement("p");
       paragraph.textContent = `${localRecipes[i].description}`;
+
+      const date = document.createElement("p");
+      date.textContent = `Receta Guardada el ${localRecipes[i].date}`
+      date.className = "dateRecipe";
 
       const divButton = document.createElement('div');
       divButton.className = "divButton"
@@ -194,6 +200,7 @@ function getContainDiv() {
       divRecipe.appendChild(divCardBody)    
       divCardBody.appendChild(subTitle);
       divCardBody.appendChild(paragraph);
+      divCardBody.appendChild(date);
       divCardBody.appendChild(divButton)
       divButton.appendChild(modalButton);
       divButton.appendChild(deleteButton);
@@ -213,14 +220,21 @@ function getContainDiv() {
                   `
             
       for (let n = 0; n < localRecipes[i].ingredients.length; n++ ) {
+
         str += `
         <li>${localRecipes[i].ingredients[n].quantity} ${localRecipes[i].ingredients[n].measure} de ${localRecipes[i].ingredients[n].name}</li>
         `
       }
+
+      let totalPrice = localRecipes[i].ingredients.reduce((valorAcc, item) => {
+        return valorAcc + item.totalPrice;
+      }, 0);
+      
       str += `
         </ul>
         <h6>Procedimiento:</h6>
         <p>${localRecipes[i].method}</p>
+        <p>El costo total de su receta es de: $${totalPrice}.</p>
         </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -256,7 +270,7 @@ getRecipes().then(severalRecipes => {
   for (let i = 0; i < severalRecipes.length; i++) {
   
     jsonList.innerHTML += `
-    <div class="card border-info mb-3" style="max-width: 20rem;">
+    <div class="card mb-3" style="max-width: 20rem;">
     <div class="card-header">${severalRecipes[i].name}</div>
     <div class="card-body">
       <h4 class="card-title">Descripción</h4>
