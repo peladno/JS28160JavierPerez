@@ -1,0 +1,80 @@
+main {
+  @media screen and (max-width: 800px) {
+    padding: 0 1rem;
+  }
+
+  .formSection {
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 1000px) and  (max-width: 1300px) {
+      width: 90%;
+    }
+
+  }
+
+  .formRecipe {
+    @media screen and (max-width:600px) {
+      padding: 1.5rem;
+      
+    }
+
+    .nameDiv {
+      @media screen and (max-width: 600px) {
+        @include flex-box(column, center, none)
+      }
+
+      input {
+        @media screen and (max-width: 600px){
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .formInputs {
+    .inputs {
+      @media screen and (max-width: 775px){
+        @include flex-box (column, center, none);
+      }
+
+      
+      input {
+        @media screen and (max-width: 450px){
+          width: 180px;
+        }
+        @media screen and (min-width:450px) and (max-width: 1200px){
+          width: 250px;
+        }
+      }
+    }
+
+    #add, #remove {
+      @media screen and (max-width: 670px){
+        margin-bottom: 0.5rem;
+        width: 3rem;
+        padding: 0.4rem 0.4rem;
+        margin-left: 0rem;
+      }
+    }
+
+    .ingredientsForm {
+      input {
+        @media screen and (max-width: 450px){
+          width: 180px;
+        }
+        @media screen and (min-width:450px) and (max-width: 1260px){
+          width: 250px;
+        }
+      }
+    }
+  }
+  #jsonRecipeList, #divContainer {
+    @media screen and (min-width: 1460px){
+      @include flex-box (row, stretch, flex-start);
+    }
+   
+  }
+ 
+}

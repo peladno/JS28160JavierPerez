@@ -20,7 +20,7 @@ main {
 
   .formSection {
     margin: 2rem;
-    width: 55%;
+    width: 60%;
   }
 
   .formRecipe {
@@ -99,7 +99,7 @@ main {
     margin-top: 0.5rem;
 
     input {
-      width: 180px;
+      width: 150px;
       margin-bottom: 0.5rem;
     }
   }
@@ -110,11 +110,12 @@ main {
     input {
       margin-top: 0rem;
       margin-bottom: 0.5rem;
-      width: 180px;
+      width: 150px;
     }
   }
 
   .buttonsForm {
+    @include flex-box(row, flex-start, flex-end);
     grid-area: buttons;
     margin-top: 0.5rem;
   }
@@ -146,7 +147,7 @@ main {
 }
 
 #jsonRecipeList {
-  @include flex-box (row, stretch, left);
+  @include flex-box (row, stretch, center);
   flex-wrap: wrap;
 }
 
@@ -159,7 +160,7 @@ main {
 }
 
 #divContainer {
-  @include flex-box (row, stretch, left);
+  @include flex-box (row, stretch, center);
   flex-wrap: wrap;
 
   .card {

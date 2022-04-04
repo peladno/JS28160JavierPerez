@@ -25,7 +25,7 @@ main {
     border-radius: 2.5rem; }
   main .formSection {
     margin: 2rem;
-    width: 55%; }
+    width: 60%; }
   main .formRecipe {
     display: flex;
     flex-direction: column;
@@ -80,15 +80,19 @@ main {
     grid-area: inputs;
     margin-top: 0.5rem; }
     .formInputs .inputs input {
-      width: 180px;
+      width: 150px;
       margin-bottom: 0.5rem; }
   .formInputs .ingredientsForm {
     grid-area: newInputs; }
     .formInputs .ingredientsForm input {
       margin-top: 0rem;
       margin-bottom: 0.5rem;
-      width: 180px; }
+      width: 150px; }
   .formInputs .buttonsForm {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
     grid-area: buttons;
     margin-top: 0.5rem; }
 
@@ -115,7 +119,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: left;
+  justify-content: center;
   flex-wrap: wrap; }
 
 .recipeListTitle {
@@ -128,7 +132,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: left;
+  justify-content: center;
   flex-wrap: wrap; }
   #divContainer .card .card-body .dateRecipe {
     color: #b6b6b6;
@@ -140,3 +144,67 @@ main {
     justify-content: space-between; }
     #divContainer .card .card-body .divButton .btn {
       width: 120px; }
+
+@media screen and (max-width: 800px) {
+  main {
+    padding: 0 1rem; } }
+
+@media screen and (max-width: 1000px) {
+  main .formSection {
+    width: 100%; } }
+
+@media screen and (min-width: 1000px) and (max-width: 1300px) {
+  main .formSection {
+    width: 90%; } }
+
+@media screen and (max-width: 600px) {
+  main .formRecipe {
+    padding: 1.5rem; } }
+
+@media screen and (max-width: 600px) {
+  main .formRecipe .nameDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: none; } }
+
+@media screen and (max-width: 600px) {
+  main .formRecipe .nameDiv input {
+    margin-bottom: 0.5rem; } }
+
+@media screen and (max-width: 775px) {
+  main .formInputs .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: none; } }
+
+@media screen and (max-width: 450px) {
+  main .formInputs .inputs input {
+    width: 180px; } }
+
+@media screen and (min-width: 450px) and (max-width: 1200px) {
+  main .formInputs .inputs input {
+    width: 250px; } }
+
+@media screen and (max-width: 670px) {
+  main .formInputs #add, main .formInputs #remove {
+    margin-bottom: 0.5rem;
+    width: 3rem;
+    padding: 0.4rem 0.4rem;
+    margin-left: 0rem; } }
+
+@media screen and (max-width: 450px) {
+  main .formInputs .ingredientsForm input {
+    width: 180px; } }
+
+@media screen and (min-width: 450px) and (max-width: 1260px) {
+  main .formInputs .ingredientsForm input {
+    width: 250px; } }
+
+@media screen and (min-width: 1460px) {
+  main #jsonRecipeList, main #divContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start; } }
