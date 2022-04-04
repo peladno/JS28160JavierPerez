@@ -5,7 +5,7 @@ main {
 
   .formSection {
     @media screen and (max-width: 1000px) {
-      width: 100%;
+      width: 80%;
     }
 
     @media screen and (min-width: 1000px) and  (max-width: 1300px) {
@@ -21,12 +21,12 @@ main {
     }
 
     .nameDiv {
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 740px) {
         @include flex-box(column, center, none)
       }
 
       input {
-        @media screen and (max-width: 600px){
+        @media screen and (max-width: 740px){
           margin-bottom: 0.5rem;
         }
       }
@@ -35,10 +35,6 @@ main {
 
   .formInputs {
     .inputs {
-      @media screen and (max-width: 775px){
-        @include flex-box (column, center, none);
-      }
-
       
       input {
         @media screen and (max-width: 450px){
@@ -47,6 +43,12 @@ main {
         @media screen and (min-width:450px) and (max-width: 1200px){
           width: 250px;
         }
+      }
+    }
+
+    .buttonsForm {
+      @media screen and (max-width: 670px){
+        @include flex-box(column, none, flex-start);
       }
     }
 

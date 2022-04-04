@@ -151,7 +151,7 @@ main {
 
 @media screen and (max-width: 1000px) {
   main .formSection {
-    width: 100%; } }
+    width: 80%; } }
 
 @media screen and (min-width: 1000px) and (max-width: 1300px) {
   main .formSection {
@@ -161,23 +161,16 @@ main {
   main .formRecipe {
     padding: 1.5rem; } }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 740px) {
   main .formRecipe .nameDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: none; } }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 740px) {
   main .formRecipe .nameDiv input {
     margin-bottom: 0.5rem; } }
-
-@media screen and (max-width: 775px) {
-  main .formInputs .inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: none; } }
 
 @media screen and (max-width: 450px) {
   main .formInputs .inputs input {
@@ -186,6 +179,13 @@ main {
 @media screen and (min-width: 450px) and (max-width: 1200px) {
   main .formInputs .inputs input {
     width: 250px; } }
+
+@media screen and (max-width: 670px) {
+  main .formInputs .buttonsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: none;
+    justify-content: flex-start; } }
 
 @media screen and (max-width: 670px) {
   main .formInputs #add, main .formInputs #remove {
